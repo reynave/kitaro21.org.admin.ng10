@@ -1,0 +1,103 @@
+<ngx-loading [show]="loading"></ngx-loading>
+<app-header></app-header>
+ 
+
+<div class="container-fluid mb-4">
+    <div class="row">
+        <div class="col-12">
+            <strong>Renewal</strong>
+        </div>
+
+        <div class="col-12">
+
+            <table id="example" class="display table-sm excel" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>User</th>
+                        <th>Bank</th>
+                        <th>Bank Account</th>
+                        <th>Bank Number</th>
+
+                        <th style="text-align: right;">Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let x of items">
+
+                        <td><code>{{x.id}}</code></td>
+                        <td>{{x.payment_date | date}}</td>
+                        <td>{{x.user}}</td>
+                        <td>{{x.bank_name}}</td>
+                        <td>{{x.bank_account}}</td>
+                        <td>{{x.bank_number}}</td>
+
+                        <td style="text-align: right;">Rp {{x.amount | number}}</td>
+
+
+                        <td class="text-center">
+                            <a href="javascript:;" class="btn btn-sm btn-danger mx-2 py-0" (click)="onProcess(x,4);">Reject</a>
+                            <a href="javascript:;" class="btn btn-sm btn-primary py-0" (click)="onProcess(x,100);">Process</a>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <strong>Renewal History</strong>
+        </div>
+
+        <div class="col-12">
+
+            <table id="example2" class="display table-sm excel" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Date</th>
+                        <th>User</th>
+                        <th>Bank</th>
+                        <th>Bank Account</th>
+                        <th>Bank Number</th>
+                        <th>Trans.Code</th>
+                        <th style="text-align: right;">Amount</th>
+                        <th>Approved Date</th>
+                        <th>Approved By</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let x of history">
+
+                        <td><code>{{x.id}}</code></td>
+                        <td>{{x.payment_date | date}}</td>
+                        <td>{{x.user}}</td>
+                        <td>{{x.bank_name}}</td>
+                        <td>{{x.bank_account}}</td>
+                        <td>{{x.bank_number}}</td>
+
+                        <td><code>{{x.transactionCode}}</code></td>
+                        <td style="text-align: right;">Rp {{x.amount | number}}</td>
+                        <td>{{x.approved_date}}</td>
+                        <td>{{x.approved_name}}</td>
+                        <td>{{x.status}}</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>
+ 

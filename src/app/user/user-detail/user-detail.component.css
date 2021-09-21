@@ -1,0 +1,32 @@
+.table-sm{
+    font-size: 12px;
+}
+img{
+    max-width: 100% !important;
+    width: 340px;
+}
+
+strong{
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+footer{
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+
+}
+.bgn{
+    background-color: #eff6ff;
+}
+.bgn2{
+    background-color: #fff5f5;
+}
+
+td small em{
+    color :#c00;
+    display: block;
+    text-align: right;
+}

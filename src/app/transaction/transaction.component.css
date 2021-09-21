@@ -1,0 +1,7 @@
+.table-sm td, .table-sm th{
+    font-size: 12px;
+}
+
+th{
+    text-transform: uppercase;
+}

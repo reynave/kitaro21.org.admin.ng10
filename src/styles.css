@@ -1,0 +1,92 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@circlon/angular-tree-component/css/angular-tree-component.css';
+b, strong{
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+    padding-top:3.6rem;
+  }
+.btn-sm{
+  font-size: 12px;
+}
+.bg-kitaro{
+  background-color: #091F51;
+}
+  .dropdown-item { 
+    text-align: left !important;
+}
+
+.display-6{
+  font-size: 23px;
+}
+
+small{
+  font-size: 12px;
+}
+
+input:disabled {
+  background-color: #fff !important;
+  border:  none;
+}
+
+.excel td{
+  font-size: 13px;
+  padding: 5px !important;
+}
+
+.excel thead th{
+  font-size: 11px;
+  padding: 5px !important;
+  text-transform: uppercase;
+}
+
+th{
+  text-transform: uppercase;
+}
+table td{
+  vertical-align: top;
+}
+.table-sm{
+  font-size: 14px;
+}
+
+.table-sm th{
+  font-size: 12px;
+}
+
+.form-control{
+  height: auto;
+  padding: 0px 5px;
+  border-radius: 0px;
+  font-size: 13px;
+} 
+
+input[type="text"], input[type="number"], select,  input[type="date"] {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: 0px 5px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da; 
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+input:read-only {
+  background-color: antiquewhite;
+  border: none;
+}
+
+.dataTables_wrapper .dataTables_filter input, .dataTables_wrapper .dataTables_filter input   {
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  padding: 2px 5px !important;
+  background: #fff !important;
+  margin-left: 3px;
+  font-size: 13px;
+}

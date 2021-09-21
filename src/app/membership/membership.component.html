@@ -1,0 +1,55 @@
+<app-header></app-header>
+
+<div class="container-fluid">
+    <div class="row my-3">
+        <div class="col-6 mb-2">
+            <h1 class="display-6 ">User Membership Reminder</h1>
+        </div>
+        <div class="col-6 mb-2 text-right">
+             <button type="button" (click)="onReload();" class="btn btn-sm py-1 px-3 btn-danger">Reload</button>
+        </div>
+        <div class="col-12  mb-2">
+            <div class="border p-1 alert-warning">
+                <small>
+                    SEND :<br>
+                1 = SEND, 0 = NOT SEND, 4 = FAIL
+                </small>
+            </div>
+        </div>
+
+        <div class="col-12">
+            
+            <table id="example" class="display excel " style="width:100%">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>ID</th>
+                        <th>Name</th>
+
+                        <th>Expires Date</th>
+                        <th>Reminder Date</th>
+                        <th>Send</th>
+                        <th>Send Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let x of items; let i = index">
+                        <td>{{i+1}}</td>
+                        <td><code>{{x.id}}</code></td>
+                        <td>{{x.name}}</td>
+
+                        <td>{{x.expires_date}}</td>
+                        <td>{{x.reminderDate}}</td>
+                        <td>{{x.send}}</td>
+                        <td>{{x.send != 0 ? x.sendDate : ''}}</td>
+
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>

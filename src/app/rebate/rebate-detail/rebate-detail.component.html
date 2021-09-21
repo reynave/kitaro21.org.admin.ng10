@@ -1,0 +1,115 @@
+<ngx-loading [show]="loading"></ngx-loading>
+<app-header></app-header>
+
+<div class="bg-light border-bottom shadow-sm mb-3">
+    <div class="container-fluid"> 
+        <div class="row">
+            <div class="col-6 py-1">
+                <a href="javascript:;" (click)="back();">Back</a>
+            </div>
+            <div class="col-6 py-1 text-right">
+                <a [href]="rebateUrl" class="btn btn-sm btn-outline-success py-0"><small> <img src="./assets/icon/icons8-microsoft-excel.svg" width="20">  Export to Excel</small></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-12 mb-4">
+            <div class="lh-2">Weekly : {{weekly}}</div>
+            <strong>  Weekly Report  ({{date}}) - Data Penyewa & Rebate Distributor KITARO Samurai</strong>
+        </div>
+
+        <div class="col-12">
+            <div class="border py-1 bg-white">
+                <table id="ha" class="display excel " style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Investor</th>
+                            <th>Type</th>
+
+                            <th>Date</th>
+                            <th>Level</th>
+                            <th>Distributor</th>
+
+                            <th class="text-right">Qty &nbsp; &nbsp; &nbsp;</th>
+                            <th class="text-right">USD &nbsp; &nbsp; &nbsp;</th>
+                            <th class="text-right">Rupiah &nbsp; &nbsp; &nbsp;</th>
+                            <th>Trans.Code</th>
+                            <th>Invoice.No</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="let x of items; let i = index">
+                            <td>{{i+1}}</td>
+                            <td> {{ x.investor}} </td>
+                            <td> {{ x.idUserTopup == 0 ? 'New':'Top Up'}} </td>
+
+                            <td> {{x.update_date | date}}</td>
+                            <td>{{x.level}} </td>
+                            <td> <a href="javascript:;"  (click)="open(content,x);" >{{ x.distributor}}</a> </td>
+
+                            <td class="text-right">{{x.unit}}</td>
+                            <td class="text-right"> {{x.usd | number }}</td>
+                            <td class="text-right"> {{x.rupiah | number}}</td> 
+
+                            <td><code>{{x.transactionCode}}</code> </td>
+                            <td><code>{{x.invoiceNo}}</code> </td>
+                        </tr>
+                    </tbody>
+                  
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <strong class="modal-title">{{distributor}}</strong>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-sm excel">
+                    <tr>
+                        <td>Distributor </td>
+                        <td>: {{detail.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>ID </td>
+                        <td>: {{detail.ktp}}</td>
+                    </tr>
+                    <tr>
+                        <td>Qty </td>
+                        <td>:  {{detail.unit | number}}</td>
+                    </tr>
+                    <tr>
+                        <td>USD </td>
+                        <td>: USD  {{detail.usd | number}}</td>
+                    </tr>
+                    <tr>
+                        <td>Rupiah </td>
+                        <td>: Rp  {{detail.rupiah | number}}</td>
+                    </tr>
+                    <tr>
+                        <td>NPWP </td>
+                        <td>: {{detail.npwp}}</td>
+                    </tr>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>

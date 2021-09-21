@@ -1,0 +1,146 @@
+<ngx-loading [show]="loading"></ngx-loading>
+<app-header></app-header>
+
+<div class="bg-light border-bottom shadow-sm mb-3">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12 py-1">
+                <a href="javascript:;" class="mr-3"><b>New Topup <span [hidden]="items.length < 1">({{items.length}})</span></b></a> 
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid mb-3">
+    <div class="row">
+        <div class="col-6">
+            <strong>New Topup</strong> 
+        </div>
+        
+        <div class="col-12">
+
+            <table id="example" class="display excel" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Date Confirm</th>
+                        <th>User</th>  
+                        <th>Bank</th> 
+                        <th>Bank Account</th>  
+                        <th>Bank Number</th>  
+                        
+                        <th style="text-align: right;">Amount</th>   
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let x of items">
+                        
+                        <td><code>{{x.id}}</code></td>  
+                        <td> {{x.payment_date | date}}</td>
+                        <td>
+                            <a [routerLink]="[ '/user', x.userId ]">{{x.user}}</a>
+                        </td>  
+                        <td>  {{x.bank_name}}  </td>  
+                        <td>{{x.bank_account}}</td>   
+                        <td>{{x.bank_number}}</td>  
+                        <td style="text-align: right;">Rp {{x.amount | number}}</td>  
+                        <td class="text-center"> 
+                            <a href="javascript:;" class="btn btn-sm btn-danger mx-2 py-0" (click)="onProcess(x,4);"  >Reject</a> 
+                            <a href="javascript:;" class="btn btn-sm btn-primary py-0"  (click)="onProcess(x,100);"  >Process</a> </td>
+                       
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            <strong>History Topup in 3 Month</strong> 
+        </div>
+        
+        <div class="col-12">
+
+            <table id="example2" class="display excel" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Date Confirm</th>
+                        <th>User</th>  
+                        <th>Bank</th> 
+                        <th>Bank Account</th>  
+                        <th>Bank Number</th>  
+                        
+                        <th style="text-align: right;">Amount</th>   
+                        <th>Status</th>
+                        <th>Approved By</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let x of history">
+                        
+                        <td><code>{{x.id}}</code></td>  
+                        <td> {{x.payment_date | date}}</td>
+                        <td>{{x.user}}</td>  
+                        <td>{{x.bank_name}}</td>  
+                        <td>{{x.bank_account}}</td>   
+                        <td>{{x.bank_number}}</td>  
+                        <td style="text-align: right;">Rp {{x.amount | number}}</td>  
+                        <td>{{x.status}}</td>
+                        <td>{{x.approved_name}}</td>
+                       
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <strong class="modal-title" id="modal-basic-title">Transaction : {{dt.id}} </strong>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-12"> 
+                <strong>Request Top up</strong>
+                <table class="table table-sm">
+                    <tr>
+                        <td width="30%">ID user</td>
+                        <td>: {{dt.userId}}  </td>
+                    </tr>
+                  
+
+                    
+                </table>
+            </div>
+            
+        </div>
+    </div>
+    <div class="modal-footer">
+
+        <button type="button" class="btn btn-danger" (click)="onProcess('4');">Reject</button>
+
+        <button type="button" class="btn btn-success" (click)="onProcess('100');">Approved</button>
+
+        <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Close</button>
+    </div>
+</ng-template>

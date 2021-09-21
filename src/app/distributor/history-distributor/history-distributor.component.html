@@ -1,0 +1,62 @@
+<ngx-loading [show]="loading"></ngx-loading>
+<app-header></app-header>
+ 
+
+<div class="bg-light border-bottom shadow-sm mb-3">
+    <div class="container-fluid"> 
+        <div class="row">
+            <div class="col-12 py-1">
+                <a href="javascript:;" (click)="back();">Back</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-12 mb-3">
+            <h1 class="display-6">History request as Distributor</h1>
+        </div>
+       
+        <div class="col-12">
+
+            <table id="example" class="table table-sm" style="width:100%">
+                <thead>
+                    <tr>
+                        <th title="Transaction Code">ID</th>
+                        <th>Name</th> 
+                        <th>Request As</th>
+                        <th>Request Date</th>
+                        <th class="text-center">Action</th>
+                        <th>Approved By</th>
+                        <th class="text-center"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let x of items">
+                        <td><code>{{x.id_user}}</code></td>
+                        <td>{{x.name}} {{x.idUpgrade}}</td>  
+                        <td> {{x.level}}</td> 
+                        <td>{{x.request_date | date : 'medium'}}</td> 
+                        <td class="text-center">
+                           <div>{{x.status}}</div> 
+                        </td>
+                        <td>
+                            {{x.approved}}
+                        </td>
+                        <td class="text-center">
+                            <a class="btn alert-info py-0 btn-sm" [routerLink]="[ '/user', x.id_user ]" >Detail</a>
+                            <a [hidden]="x.idStatus != 15" class="btn alert-success py-0 btn-sm mx-2" [href]="api+'letter/distributorForm/'+x.id_user+'/?adtoken='+admintoken" target="_blank">Form</a>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+ 

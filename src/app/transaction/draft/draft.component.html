@@ -1,0 +1,59 @@
+<app-header></app-header>
+<div class="bg-light border-bottom shadow-sm mb-3">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12 py-1">
+                <a href="javascript:;"  [routerLink]="[ '/transaction' ]" class="mr-3">New Transaction</a>
+             
+                 <a href="javascript:;" class="mr-3"  [routerLink]="[ '/transaction/history' ]">History</a>
+
+                 <a href="javascript:;" class="mr-3"><b>Draft</b></a>
+            </div> 
+          
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-6">Draft Transaction</h1>
+            <div>
+                <small>Note : This transaction  view only, admin cannot access this data, only distributor with related contact allow to access this data.</small>
+            </div>
+        </div>
+
+        <div class="col-12">
+            
+            
+            <table id="example" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th title="Transaction Code">ID</th>
+                        <th>Name</th>  
+                        <th style="text-align: right;">Units</th>
+                        <th style="text-align: right;">GrandTotal</th>  
+                        <th>Distributor</th>  
+                        <th>Status</th>   
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let x of items"  >
+                        <td><code>{{x.id}}</code></td> 
+                        <td>{{x.name}}</td>    
+                        <td style="text-align: right;">{{x.unit}}</td> 
+                        <td style="text-align: right;">Rp {{x.grandTotal | number}}</td> 
+                        <td>{{x.distributor}}</td>   
+                        <td>{{x.status}}</td>   
+                        
+                    </tr>
+                    
+                </tbody>
+                
+            </table>
+ 
+        </div>
+    </div>
+</div>

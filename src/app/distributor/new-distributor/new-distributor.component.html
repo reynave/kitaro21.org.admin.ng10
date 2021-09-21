@@ -1,0 +1,56 @@
+<ngx-loading [show]="loading"></ngx-loading>
+<app-header></app-header>
+ 
+<div class="bg-light border-bottom shadow-sm mb-3">
+    <div class="container-fluid"> 
+        <div class="row">
+            <div class="col-12 py-1"> 
+                <a [routerLink]="[ '/distributor/history' ]">History Requested</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-12 mb-3">
+            <h1 class="display-6">Request as Distributor</h1>
+        </div>
+       
+        <div class="col-12">
+
+            <table id="example" class="table table-sm" style="width:100%">
+                <thead>
+                    <tr>
+                        <th title="Transaction Code">ID</th>
+                        <th>Name</th> 
+                        <th>Request As</th>
+                        <th>Request Date</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let x of items">
+                        <td><code>{{x.id_user}}</code></td>
+                        <td>{{x.name}} {{x.idUpgrade}}</td>  
+                        <td> {{x.level}}</td> 
+                        <td>{{x.request_date | date : 'medium'}}</td> 
+                        <td class="text-center">
+                            <a [routerLink]="[ '/user', x.id_user ]" class="mx-1">Detail</a>
+                            <a href="javascript:;" (click)="onApproved(false,x);" class="btn btn-danger btn-sm mx-1">Reject</a>
+                            <a href="javascript:;" (click)="onApproved(true,x);" class="btn btn-success btn-sm mx-1">Approved</a>
+
+                        </td>
+
+                        
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+ 

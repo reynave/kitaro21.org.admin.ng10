@@ -1,0 +1,67 @@
+<ngx-loading [show]="loading"></ngx-loading>
+
+<app-header></app-header>
+
+<div class="container my-3">
+ 
+
+    <div class="row mb-4">
+        <div class="col-6">
+            <div class="display-6">Setting of Profit Sharing</div>
+
+        </div>
+
+        <div class="col-6 text-right">
+           
+            <button type="button" class="btn btn-warning text-white btn-sm" [hidden]="!readonly" (click)="readonly=false;">Editable</button>
+
+            <button type="button" class="btn btn-light btn-sm" [hidden]="readonly" (click)="readonly=true;">Finish Edit</button>
+        </div>
+
+
+        <div class="col-12 mt-2">
+        
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name </th>
+                        <th width="100">Level </th> 
+                        <th class="text-right"  width="100">Precent Fee </th>
+                        <th [hidden]="readonly">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let x of items; let i = index">
+                        <td>{{i+1}}</td>
+                        <td><input type="text" class="form-control form-control-sm" [disabled]="readonly" (change)="fnUpdate(x);" [(ngModel)]="x.name" placeholder="Name of buyer"></td>
+
+                        <td><input type="text" class="form-control form-control-sm" [disabled]="readonly" (change)="fnUpdate(x);" [(ngModel)]="x.level" ></td>
+  
+                        <td><input type="number"  class="form-control form-control-sm" [disabled]="readonly" (change)="fnUpdate(x);" [(ngModel)]="x.trading"></td> 
+
+                        <td [hidden]="readonly">
+                            <a href="javascript:;" [hidden]="x.presence != '9' " (click)="fnPresenceVps(x,1)" class="px-1"><small>Publish</small></a> 
+                            <a href="javascript:;" [hidden]="x.presence != '9' " (click)="fnPresenceVps(x,0)" class="px-1"><small>Delete</small></a>
+                            
+
+                            <a href="javascript:;" [hidden]="x.presence == '9' " (click)="fnPresenceVps(x,9)"   class="px-1"><small>Disable</small></a> 
+                            
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4"></td>
+                        <td>
+                            <a href="javascript:;"  [hidden]="readonly" (click)="addPackage();"> Add Price</a>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+     
+    </div>
+
+    
+</div>

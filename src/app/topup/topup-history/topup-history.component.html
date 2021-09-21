@@ -1,0 +1,162 @@
+<ngx-loading [show]="loading"></ngx-loading>
+<app-header></app-header>
+
+<div class="bg-light border-bottom shadow-sm mb-3">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12 py-1">
+                <a href="javascript:;" class="mr-3" [routerLink]="[ '/topup' ]"> New Topup </a>
+                <a href="javascript:;" class="mr-3"><b>History</b></a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6">
+            <h1 class="display-6">History Topup</h1>
+        </div>
+
+        <div class="col-12">
+
+            <table id="example" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th title="Transaction Code">Trans.Code</th>
+                        <th>Name</th>
+
+                        <th style="text-align: right;">Units</th>
+                        <th style="text-align: right;">Price</th>
+                        <th style="text-align: right;">Currency</th>
+                        <th style="text-align: right;">Grand Total</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                   
+                    <tr *ngFor="let x of items"   [routerLink]="[ '/topup/detail', x.transactionCode ]"  >
+                        <td><code>{{x.transactionCode}}</code></td>
+                        <td>{{x.name}}</td>
+
+                        <td style="text-align: right;">{{x.unit}} <small>{{x.pricename}}</small></td>
+                        <td style="text-align: right;">USD {{x.price | number}}</td>
+                        <td style="text-align: right;">Rp {{x.currency | number}}</td>
+                        <td style="text-align: right;">Rp {{x.grandTotal | number}}</td>
+                        <td>{{x.input_date | date}}</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <strong class="modal-title" id="modal-basic-title">Transaction : {{transactionCode}} </strong>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-6">
+                <table class="table table-sm">
+                    <tr>
+                        <td>ID user</td>
+                        <td>{{dt.idUser}} </td>
+                    </tr>
+                    <tr>
+                        <td>Name</td>
+                        <td>{{dt.user}}</td>
+                    </tr>
+                    <tr>
+                        <td>Date</td>
+                        <td>{{dt.update_date | date :'medium'}} </td>
+                    </tr>
+                    <tr>
+                        <td>Unit</td>
+                        <td>{{dt.unit}} <small>{{dt.vps_name}}</small> </td>
+                    </tr>
+                    <tr>
+                        <td>pPriceVps</td>
+                        <td>USD {{dt.priceVps | number}}</td>
+                    </tr>
+                    <tr>
+                        <td>Currency</td>
+                        <td>Rp {{dt.currency | number}}</td>
+                    </tr>
+                    <tr>
+                        <td>Total Usd</td>
+                        <td>USD {{dt.totalUsd | number}}</td>
+                    </tr>
+                    <tr>
+                        <td>Grand Total</td>
+                        <td>Rp {{dt.grandTotal | number}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Status</td>
+                        <td>
+                            <div class="alert alert-{{dt.alert}} text-center">
+                                {{dt.status}}
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-6">
+                <div *ngFor="let x of upload" class="mb-2">
+                    <b>{{x.name | titlecase }}</b>
+                    <div>
+                        <a [href]="base_url+x.url" target="_blank"><small>{{x.url}}</small></a>
+                        <div>
+                            <img [src]="base_url+x.url" width="200">
+                        </div>
+                    </div>
+                    <div><small>{{x.value}}</small></div>
+                </div>
+
+            </div>
+
+            <div class="col-12 my-3">
+                <div class=" border p-1 bg-light">
+
+
+                    <table class="table table-sm border bg-white">
+                        <thead>
+                            <tr>
+                                <td>Invoice No</td>
+                                <td class="text-right">Total</td>
+                                <td class="text-center">Status</td>
+                                <td>Date</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let x of invoice">
+                                <td><code>{{x.invoiceNo}}</code></td>
+                                <td class="text-right">Rp {{x.total | number}} </td>
+                                <td class="text-center"> {{x.status}} </td>
+                                <td> {{x.input_date | date : 'medium'}} </td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+
+        <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Close</button>
+    </div>
+</ng-template>

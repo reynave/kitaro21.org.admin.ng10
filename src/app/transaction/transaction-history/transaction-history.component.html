@@ -1,0 +1,61 @@
+<app-header></app-header>
+<div class="bg-light border-bottom shadow-sm mb-3">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12 py-1">
+                <a href="javascript:;"  [routerLink]="[ '/transaction' ]" class="mr-3">New Transaction</a>
+             
+                 <a href="javascript:;" class="mr-3"><b>History</b></a>
+
+                 <a href="javascript:;" class="mr-3" [routerLink]="[ '/transaction/draft' ]">Draft</a>
+            </div> 
+          
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-6">New Transaction</h1>
+        </div>
+
+        <div class="col-12">
+            
+            
+            <table id="example" class="display" style="width:100%">
+                <thead>
+                    <tr>
+                        <th title="Transaction Code">Trans.Code</th>
+                        <th>ID User</th> 
+                        <th>Name</th> 
+
+                        <th style="text-align: right;">Units</th>
+                        <th style="text-align: right;">GrandTotal</th> 
+
+                        <th>Distributor</th> 
+                        <th class="text-center">Approved</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let x of items"  [routerLink]="[ '/transaction/detail/', x.transactionCode]" >
+                        <td><code>{{x.transactionCode}}</code></td> 
+                        <td><code>{{x.id}}</code></td>   
+                        <td>{{x.name}}</td>   
+                    
+                        <td style="text-align: right;">{{x.unit}}</td> 
+                        <td style="text-align: right;">Rp {{x.grandTotal | number}}</td>
+
+                        <td>{{x.distributor}}</td>  
+                        <td><div class="px-3 alert-{{x.alert}} text-center">{{x.update_date | date}}</div></td>
+                    </tr>
+                    
+                </tbody>
+                
+            </table>
+ 
+        </div>
+    </div>
+</div>

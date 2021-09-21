@@ -1,0 +1,21 @@
+<main class="form-signin">
+    <form (ngSubmit)="onSubmit()" #myForm="ngForm">
+        <img class="mb-4" src="./assets/img/VISION88-Hitam.png"  width="100%"> 
+        <label for="inputEmail" class="visually-hidden">Email address</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address"  [(ngModel)]="login.email" name="email"
+        #email="ngModel"  required autofocus>
+
+
+        <label for="inputPassword" class="visually-hidden">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password"  [(ngModel)]="login.password" name="password"
+        #password="ngModel"  required>
+        
+        <div class="alert alert-warning" role="alert" [hidden]="!note">
+            {{note}}
+          </div>
+        <button class="w-100 btn btn-sm py-2 btn-primary" type="submit">Sign in</button>
+        <div class="mt-5 mb-3 text-muted text-center">
+            <small >ver 2.0 &copy; 2017-2021</small>
+        </div>
+    </form>
+</main>

@@ -1,0 +1,187 @@
+<app-header></app-header>
+
+<div class="container-fluid">
+    <div class="row my-3">
+        <div class="col-12 mb-2">
+            <h1 class="display-6 ">Users</h1>
+        </div>
+    
+
+        <div class="col-12">
+            <strong>Member</strong>
+            <table id="example" class="display excel " style="width:100%">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Top Packages</th>
+ 
+                        <th>Direct Sponsor</th> 
+
+                        <th>Expires Date</th> 
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let x of items; let i = index">
+                        <td>{{i+1}}</td>
+                        <td><code>{{x.id}}</code></td>
+                        <td>{{x.name}}</td>
+                        <td>{{x.email}}</td>
+                        <td>{{x.product}}</td>
+
+                        <td>
+                            <div [ngClass]="{'text-decoration-line-through': x.parent_active == '0' }">
+                                {{x.parent}}
+                            </div> 
+                        </td>
+                         
+                        <td>{{x.expires_date}}</td> 
+                        <td>
+                            <a [routerLink]="[ '/user/', x.id]" class="btn btn-sm btn-primary mx-1 py-0">Detail</a>
+                            <a (click)="access(x);" class="btn btn-sm btn-warning mx-1  py-0">Member</a> 
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <strong class="modal-title" id="modal-basic-title">Create User from Office</strong>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+            <div class="row">
+                <div class="col">
+                    <table class="table table-sm excel">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Type
+                                </td>
+                                <Td>
+                                    <select class="form-control form-control-sm" class="form-control form-control-sm" [(ngModel)]="model.type" name="type" #type="ngModel" required>
+                                        <option value="{{x.id}}" *ngFor="let x of user_access">{{x.name}}</option>
+
+
+                                    </select>
+                                </Td>
+                            </tr>
+
+                            <tr [hidden]="model.type != '0'">
+                                <td>
+                                    Parent Binary Chart
+                                </td>
+                                <Td>
+                                    <div class="p-1 border">Root 2</div>
+                                </Td>
+                            </tr>
+
+                            <tr [hidden]="model.type != '0'">
+                                <td>
+                                    Parent Direct Sponsor
+                                </td>
+                                <Td>
+                                    <div class="p-1 border">Root 2</div>
+                                </Td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label for="name">Name</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" id="name" required="false" [(ngModel)]="model.name" name="name" #name="ngModel">
+                                    <div [hidden]="name.valid || name.pristine" class="text-danger">
+                                        Name is required
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label for="email">Email</label>
+                                </td>
+                                <td>
+                                    <input type="email" class="form-control form-control-sm" id="email" required [(ngModel)]="model.email" name="email" #email="ngModel" email>
+                                    <div [hidden]="email.valid || email.pristine" class="text-danger">
+                                        Email is required
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label for="phone">Phone</label>
+                                </td>
+                                <td>
+                                    <input type="tel" class="form-control form-control-sm" id="phone" required [(ngModel)]="model.phone" name="phone" #phone="ngModel" placeholder="start from 62">
+                                    <div [hidden]="phone.valid || phone.pristine" class="text-danger">
+                                        Phone is required
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Ebook</td>
+                                <td>
+                                    <select class="form-control form-control-sm" [(ngModel)]="model.idVps" name="idVps" #idVps="ngModel" required="model.type == '0' ? true:false ">
+                                        <option [value]="x.id" *ngFor="let x of ebook"> {{x.name}} ( Rp {{x.price | number}})</option>
+                                    </select>
+                                    <div [hidden]="idVps.valid || idVps.pristine" class="text-danger">
+                                        Ebook is required
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <label for="registerDate">Register Date</label>
+                                </td>
+                                <td>
+                                    <input type="date" class="form-control form-control-sm" id="registerDate" required [(ngModel)]="model.registerDate" name="registerDate" #registerDate="ngModel" placeholder="Register date will generate Expired and upgrade date">
+                                    <div [hidden]="registerDate.valid || registerDate.pristine" class="text-danger">
+                                        Register date is required
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr [hidden]="model.type != 'a'">
+                                <td>
+                                    <label>Password</label>
+                                </td>
+                                <td>
+                                    <small>Will send by Email</small>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+
+
+
+            <div class="text-right">
+                <span [hidden]="!loading">Loading</span>
+                <button type="button" class="btn btn-default mx-1" (click)="modal.dismiss('Cross click')">Cancel</button>
+                <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
+            </div>
+        </form>
+    </div>
+
+</ng-template>

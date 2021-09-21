@@ -1,0 +1,115 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-info fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">MLM ver B 2.1</a>
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+                <a class="nav-link " [ngClass]="{'active': active == 'home'}" href="#">Home {{notif}}</a>
+            </li>
+ 
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle {{active == 'user' ? 'active': false}}" href="#" id="dropdown032" data-bs-toggle="dropdown" aria-expanded="false">Members</a>
+                <ul class="dropdown-menu float-left" aria-labelledby="dropdown032">
+                    <li><a class="dropdown-item" [routerLink]="[ '/user']">User</a></li>
+                    <li><a class="dropdown-item" [routerLink]="[ '/membership']">Membership</a></li>
+                    <li><a class="dropdown-item" [hidden]="!user_access.admin" [routerLink]="[ '/admin']">Admin</a></li>
+                    
+                </ul>
+            </li>
+
+ 
+            <li class="nav-item">
+                <a class="nav-link" [ngClass]="{'active': active == 'package'}" href="javascript:;" [routerLink]="[ '/package']">Package</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" [ngClass]="{'active': active == 'distributor'}" href="javascript:;" [routerLink]="[ '/distributor']">Family Tree</a> 
+            </li>
+
+
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle {{active == 'transaction' ? 'active': false}}  {{active == 'topup' ? 'active': false}}  {{active == 'payment' ? 'active': false}}" href="#" id="dropdown02" data-bs-toggle="dropdown" aria-expanded="false">Transaction</a>
+                <ul class="dropdown-menu float-left" aria-labelledby="dropdown02">
+                    <li><a class="dropdown-item" [routerLink]="['/transaction']">General Journal</a></li> 
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" [ngClass]="{'active': active == 'accountTrading'}" href="javascript:;" [routerLink]="[ '/accountTrading']">EA Form</a>
+            </li>
+
+            
+            <li class="nav-item dropdown" [hidden]="!user_access.kitaro">
+                <a class="nav-link dropdown-toggle {{active == 'k21' ? 'active': false}}  " href="#" id="dropdown02" data-bs-toggle="dropdown" aria-expanded="false">Commition</a>
+                <ul class="dropdown-menu float-left" aria-labelledby="dropdown02"> 
+                    <li><a class="dropdown-item" [hidden]="!user_access.admin"  [routerLink]="[ '/profitSetting']">Setting</a></li> 
+                    <li><a class="dropdown-item"  [routerLink]="[ '/profit']">Profit Sharing</a></li>
+                    <li><a class="dropdown-item"  [routerLink]="[ '/profit']">Rebate</a></li>
+                </ul>
+            </li>
+        </ul>
+
+     
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">{{name}}</a>
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
+                        <li><a class="dropdown-item" href="javascript:;" (click)="open(password);">Changes Password</a></li>
+                        <li><a class="dropdown-item" href="javascript:;" (click)="logout();">Log out</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+
+<ng-template #password let-c="close" let-d="dismiss">
+    <form (ngSubmit)="onChangePassword()" #myForm="ngForm">
+        <div class="modal-header">
+            <strong class="modal-title" id="modal-basic-title">Changes Password</strong>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <div class="row">
+                <div class="col-12">
+                    <label>Current Password</label>
+                    <input type="password" id="current" required [(ngModel)]="model.current" name="current" #current="ngModel" class="form-control form-control-sm">
+                    <div [hidden]="current.valid || current.pristine" class="text-danger">
+                        <small>Current password is required</small>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <hr>
+                </div>
+                <div class="col-12">
+                    <label>New Password</label>
+                    <input type="password" id="pass1" required [(ngModel)]="model.pass1" name="pass1" #pass1="ngModel" class="form-control form-control-sm">
+                    <div [hidden]="pass1.valid || pass1.pristine" class="text-danger">
+                        <small>new password is required</small>
+                    </div>
+                </div>
+
+                <div class="col-12 my-2">
+                    <label>Confirm Password</label>
+                    <input type="password" id="pass2" required [(ngModel)]="model.pass2" name="pass2" #pass2="ngModel" class="form-control form-control-sm">
+                    <div [hidden]="pass2.valid || pass2.pristine" class="text-danger">
+                        <small>Confirm password is required</small>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark mx-2" (click)="c('Save click')">Cancel</button>
+            <button type="submit" class="btn btn-dark" [disabled]="!myForm.form.valid">Submit</button>
+        </div>
+    </form>
+</ng-template>

@@ -1,0 +1,11 @@
+footer{
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: auto;
+}
+
+.mb-10{
+    margin-bottom: 70px;
+}

@@ -1,0 +1,97 @@
+<app-header></app-header>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="display-6 my-3">Account Trading</h1>
+        </div>
+
+        <div class="col-12">
+            <div class="mb-3">
+                <strong>Open EA</strong>
+                <table id="example" class="display excel " style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>ID USER</th>
+                            <th>name</th>
+
+                            <th>server name</th>
+                            <th>mt4 number</th>
+                            <th>hfid</th>
+
+                            <th>access code</th>
+                            <th>ea name</th>
+                            <th class="text-right">amount (USD)</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let x of items; let i = index">
+                            <td>{{i+1}}</td>
+                            <td><code>{{x.userId}}</code></td>
+                            <td>{{x.name}}</td>
+
+                            <td>{{x.server_name}}</td>
+                            <td>{{x.mt4_number}}</td>
+                            <td>{{x.hfid}}</td>
+
+                            <td>{{x.access_code}}</td>
+                            <td>{{x.ea_name}}</td>
+                            <td class="text-right">{{x.amount | number}}</td>
+
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
+
+        <div class="col-12">
+            <strong>EA Approved by Admin </strong>
+            <div class="bg-light p-1 mb-2 border shadow-sm">
+                <table id="example2" class="display excel " style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>ID USER</th>
+                            <th>name</th>
+
+                            <th>server name</th>
+                            <th>mt4 number</th>
+                            <th>hfid</th>
+
+                            <th>access code</th>
+                            <th>ea name</th>
+                            <th class="text-right">amount (USD)</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let x of closed; let i = index">
+                            <td>{{i+1}}</td>
+                            <td><code>{{x.userId}}</code></td>
+                            <td>{{x.name}}</td>
+
+                            <td>{{x.server_name}}</td>
+                            <td>{{x.mt4_number}}</td>
+                            <td>{{x.hfid}}</td>
+
+                            <td>{{x.access_code}}</td>
+                            <td>{{x.ea_name}}</td>
+                            <td class="text-right">{{x.amount | number}}</td>
+
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

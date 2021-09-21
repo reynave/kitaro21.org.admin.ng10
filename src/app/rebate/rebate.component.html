@@ -1,0 +1,42 @@
+<ngx-loading [show]="loading"></ngx-loading>
+<app-header></app-header>
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-12 mb-3">
+            <small class="text-danger">
+                Data weekly dihitung dari hari Monday s/d Sunday
+            </small>
+            <div>
+                <strong>Data Penyewa & Rebate Distributor KITARO Samurai</strong>
+            </div>
+        </div>
+        <div class="col-12">
+            <table id="ha" class="display" style="width:100%">
+                <thead>
+                    <tr> 
+                        <th>Period Date</th>
+                        <th class="text-right">Total Investor</th> 
+                        <th class="text-right">Total Unit</th>
+                        <th class="text-right">Grand Total</th>
+                        <th>Date</th>  
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr *ngFor="let x of items"  [routerLink]="[ '/rebate/detail', x.weekly ]"> 
+                        <td>{{x.weekly}}</td>
+                        <td class="text-right">{{x.investor | number}}</td>
+
+                        <td class="text-right">{{x.units | number}}</td>
+                        <td class="text-right">Rp {{x.grandTotal | number}}</td>
+                        <td>{{x.update_date | date}}</td>  
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+      
+    </div>
+</div>
+
