@@ -164,10 +164,9 @@ export class UserDetailComponent implements OnInit {
 
     );
   }
-
+  note:string;
   onTab(val) { 
-    this.active = val;
-    this.comBalanceEnable = false; 
+    this.active = val; 
     this.note = "";
   }
 
@@ -175,140 +174,5 @@ export class UserDetailComponent implements OnInit {
     history.back();
   }
 
-
-  comBalanceEnable: boolean = false;
-  onBalance(val) {
-    this.comBalanceEnable = val;
-  }
-
-  balanceResult: number = 0;
-  onKeydownEvent(bonus) {
-    this.balanceResult = this.balance + bonus;
-  }
-
-  note: string = "";
-  onSubmitComSponsor() {
-    const body = {
-      id: this.activatedRoute.snapshot.paramMap.get('id'),
-      balance: this.balance,
-      note: this.note,
-    }
-    if (this.balance != 0 && this.note != "") {
-      this.http.post<any>(environment.api + "user/onSubmitComSponsor/", body, {
-        headers: this.configService.headers()
-      }).subscribe(
-        data => {
-          console.log(data);
-          this.comBalanceEnable = false;
-          window.location.reload();
-        },
-        error => {
-          console.log(error);
-        },
-
-      );
-    } else {
-      alert("Rp 0 balance is not allowed AND note is requred! ");
-    }
-
-  }
-
-  onSubmitComPassup() {
-    const body = {
-      id: this.activatedRoute.snapshot.paramMap.get('id'),
-      balance: this.balance,
-      note: this.note,
-    }
-    if (this.balance != 0 && this.note != "") {
-      this.http.post<any>(environment.api + "user/onSubmitComPassup/", body, {
-        headers: this.configService.headers()
-      }).subscribe(
-        data => {
-          console.log(data);
-          this.comBalanceEnable = false;
-          window.location.reload();
-        },
-        error => {
-          console.log(error);
-        },
-
-      );
-    } else {
-      alert("Rp 0 balance is not allowed AND note is requred! ");
-    }
-
-  }
-
-  onSubmitComPairingTotal() {
-    const body = {
-      id: this.activatedRoute.snapshot.paramMap.get('id'),
-      balance: this.balance,
-      note: this.note,
-    }
-    if (this.balance != 0 && this.note != "") {
-      this.http.post<any>(environment.api + "user/onSubmitComPairingTotal/", body, {
-        headers: this.configService.headers()
-      }).subscribe(
-        data => {
-          console.log(data);
-          this.comBalanceEnable = false;
-          window.location.reload();
-        },
-        error => {
-          console.log(error);
-        },
-
-      );
-    } else {
-      alert("Rp 0 balance is not allowed AND note is requred! ");
-    }
-
-  }
-
-  accumulationLeftBalanceResult: number = 0;
-  accumulationRightBalanceResult: number = 0;
-  balanceLeft: number = 0;
-  balanceRight: number = 0;
-
-  date = new Date();
-
-  balanceExpired;
-  onKeydownEventPairing(bonus, l) {
-    if (l == 'l') {
-      this.accumulationLeftBalanceResult = this.balanceLeft + bonus;
-    } else if (l == 'r') {
-      this.accumulationRightBalanceResult = this.balanceRight + bonus;
-    }
-
-  }
-
-
-  onSubmitComPairingAk() {
-    const body = {
-      id: this.activatedRoute.snapshot.paramMap.get('id'),
-      balanceExpired: this.balanceExpired,
-      balanceLeft: this.balanceLeft,
-      balanceRight: this.balanceRight,
-      note: this.note,
-    }
-    console.log(body);
-    if (this.note != "") {
-      this.http.post<any>(environment.api + "user/onSubmitComPairingAk/", body, {
-        headers: this.configService.headers()
-      }).subscribe(
-        data => {
-          console.log(data);
-          this.comBalanceEnable = false;
-          window.location.reload();
-        },
-        error => {
-          console.log(error);
-        },
-
-      );
-    } else {
-      alert("Note is requred! ");
-    }
-
-  }
+  
 }

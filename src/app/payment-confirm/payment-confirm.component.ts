@@ -5,11 +5,11 @@ import { ConfigService } from 'src/app/service/config.service';
 
 declare var $;
 @Component({
-  selector: 'app-account-trading',
-  templateUrl: './account-trading.component.html',
-  styleUrls: ['./account-trading.component.css']
+  selector: 'app-payment-confirm',
+  templateUrl: './payment-confirm.component.html',
+  styleUrls: ['./payment-confirm.component.css']
 })
-export class AccountTradingComponent implements OnInit {
+export class PaymentConfirmComponent implements OnInit {
   items: any = [];
   closed: any = [];
   constructor(
@@ -24,7 +24,7 @@ export class AccountTradingComponent implements OnInit {
   }
 
   getHttp() {
-    this.http.get<any>(environment.api + "ea/index", {
+    this.http.get<any>(environment.api + "payment/index", {
       headers: this.configService.headers()
     }).subscribe(
       data => {
@@ -57,7 +57,7 @@ export class AccountTradingComponent implements OnInit {
         data : obj,
         status : status,
       }
-      this.http.post<any>(environment.api + "ea/onApproved",body, {
+      this.http.post<any>(environment.api + "payment/onApproved",body, {
         headers: this.configService.headers()
       }).subscribe(
         data => {

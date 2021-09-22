@@ -17,16 +17,15 @@
                             <th>ID USER</th>
                             <th>name</th>
 
-                            <th>server name</th>
-                            <th>mt4 number</th>
-                            <th>hfid</th>
+                            <th>Product</th>
+                            <th>Qty</th>
+                            <th class="text-right">Amount IDR</th>
 
-                            <th>access code</th>
-                            <th>ea name</th>
-                            <th class="text-right">amount (USD)</th> 
-                            <th>View</th>
-                            <th>Payment</th>
-                            <th class="text-center">Action</th> 
+                            <th>bank</th>
+                            <th>bank_account</th>
+                            <th>bank_number</th>
+                            <th>date_payment</th>
+                            <th class="text-center">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,20 +35,20 @@
                             <td><code>{{x.userId}}</code></td>
                             <td>{{x.name}}</td>
 
-                            <td>{{x.server_name}}</td>
-                            <td>{{x.mt4_number}}</td>
-                            <td>{{x.hfid}}</td>
-
-                            <td>{{x.access_code}}</td>
-                            <td>{{x.ea_name}}</td>
+                            <td>{{x.product}}</td>
+                            <td>{{x.qty}}</td>
                             <td class="text-right">{{x.amount | number}}</td>
-                            <td> <a href="">View</a> </td>
-                            <td>  {{x.status < 80  ? ' - ' :' Approved by '+x.admin}}</td>
-                            <td class="text-center"> <button type="button" (click)="onApproved(x,true);" class="btn btn-sm btn-info mx-1">Approved</button>
-                            
+
+                            <td>{{x.bank}}</td>
+                            <td>{{x.bank_account}}</td>
+                            <td>{{x.bank_number}}</td>
+                            <td>{{x.date_payment}}</td>
+
+                            <td class="text-center">
+                                <button type="button" (click)="onApproved(x,true);" class="btn btn-sm btn-info mx-1">Approved</button> 
                                 <button type="button" (click)="onApproved(x,false);" class="btn btn-sm btn-warning">Revision</button>
                             </td>
-                             
+
                         </tr>
 
                     </tbody>
@@ -66,34 +65,36 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Order Code</th>
                             <th>ID USER</th>
                             <th>name</th>
 
-                            <th>server name</th>
-                            <th>mt4 number</th>
-                            <th>hfid</th>
+                            <th>Product</th>
+                            <th>Qty</th>
+                            <th class="text-right">Amount IDR</th>
 
-                            <th>access code</th>
-                            <th>ea name</th>
-                            <th class="text-right">amount (USD)</th>
-                            <th>Viwe</th>
+                            <th>bank</th>
+                            <th>bank_account</th>
+                            <th>bank_number</th>
+                            <th>date_payment</th>
                             <th>Approved by</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let x of closed; let i = index">
                             <td>{{i+1}}</td>
+                            <td>{{x.orderCode}}</td>
                             <td><code>{{x.userId}}</code></td>
                             <td>{{x.name}}</td>
 
-                            <td>{{x.server_name}}</td>
-                            <td>{{x.mt4_number}}</td>
-                            <td>{{x.hfid}}</td>
-
-                            <td>{{x.access_code}}</td>
-                            <td>{{x.ea_name}}</td>
+                            <td>{{x.product}}</td>
+                            <td>{{x.qty}}</td>
                             <td class="text-right">{{x.amount | number}}</td>
-                            <td> <a href="">View</a> </td>
+
+                            <td>{{x.bank}}</td>
+                            <td>{{x.bank_account}}</td>
+                            <td>{{x.bank_number}}</td>
+                            <td>{{x.date_payment}}</td>
                             <td> {{x.admin}}, {{x.approved_date}} </td>
                         </tr>
 

@@ -31,7 +31,10 @@
                 <a class="nav-link dropdown-toggle {{active == 'transaction' ? 'active': false}}  {{active == 'topup' ? 'active': false}}  {{active == 'payment' ? 'active': false}}" href="#" id="dropdown02" data-bs-toggle="dropdown" aria-expanded="false">Transaction</a>
                 <ul class="dropdown-menu float-left" aria-labelledby="dropdown02">
                     <li><a class="dropdown-item" [routerLink]="['/transaction']">General Journal</a></li> 
+                    <li><a class="dropdown-item" [routerLink]="['/paymentConfirm']">Payment Confirm</a></li> 
+                    
                 </ul>
+
             </li>
 
             <li class="nav-item">
@@ -44,7 +47,7 @@
                 <ul class="dropdown-menu float-left" aria-labelledby="dropdown02"> 
                     <li><a class="dropdown-item" [hidden]="!user_access.admin"  [routerLink]="[ '/profitSetting']">Setting</a></li> 
                     <li><a class="dropdown-item"  [routerLink]="[ '/profit']">Profit Sharing</a></li>
-                    <li><a class="dropdown-item"  [routerLink]="[ '/profit']">Rebate</a></li>
+                    <li><a class="dropdown-item"  [routerLink]="[ '/rebate']">Rebate</a></li>
                 </ul>
             </li>
         </ul>

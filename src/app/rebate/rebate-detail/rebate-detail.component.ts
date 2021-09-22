@@ -40,8 +40,8 @@ export class RebateDetailComponent implements OnInit {
       data => {
         console.log(data);
         this.items = data['items'];
-        this.date = data['date'];
-        this.weekly = this.activatedRoute.snapshot.paramMap.get('date');
+        this.date = data['rebate'];
+  
         $(document).ready(function () {
           $('#ha').DataTable({
             lengthMenu: [100, 200, 500],

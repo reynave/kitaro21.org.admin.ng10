@@ -17,11 +17,9 @@
                         <tr>
                             <th>Date</th>
                             <th title="Transaction Code">Trans.Code</th>
-                            <th>Label</th>
-                            <th>Note</th>
+                            <th>Label</th> 
 
-                            <th style="text-align: right;">Amount</th>
-                            <th style="text-align: right;">Balance</th>
+                            <th style="text-align: right;">Amount</th> 
                             
                             <th>ID User</th>
                             <th>User</th>
@@ -33,10 +31,8 @@
                         <tr *ngFor="let x of items">
                             <td>{{x.input_date | date : 'medium'}}</td>
                             <td><code>{{x.transactionCode}}</code></td>
-                            <td>{{x.labels}}</td>
-                            <td>{{x.note}}</td>
-                            <td style="text-align: right;"  [ngClass]="{'text-danger': x.amount <0}"  >Rp {{x.amount | number}}</td>
-                            <td style="text-align: right;">Rp {{x.balance | number}}</td>
+                            <td>{{x.labels}}</td> 
+                            <td style="text-align: right;"  [ngClass]="{'text-danger': x.amount <0}"  >Rp {{x.amount | number}}</td> 
                             <td> {{x.userId}} </td>
                             <td> {{x.name}} </td>
                         </tr>

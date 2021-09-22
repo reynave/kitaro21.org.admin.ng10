@@ -27,6 +27,7 @@ import { RenewalComponent } from './renewal/renewal.component';
 import { MembershipComponent } from './membership/membership.component';
 import { AdminComponent } from './admin/admin.component';
 import { VerivedComponent } from './verived/verived.component'; 
+import { PaymentConfirmComponent } from './payment-confirm/payment-confirm.component';
 
 const routes: Routes = [
   { path: "", component: LoginComponent, data: { active: "" } },
@@ -62,9 +63,15 @@ const routes: Routes = [
 
   { path: "profit", component: ProfitComponent, data: { active: "k21" }, canActivate: [AuthGuard] },
   { path: "profit/detail/:date", component: ProfitDetailComponent, data: { active: "k21" }, canActivate: [AuthGuard] },
-  { path: "profit/csv/:id", component: CsvReviewComponent, data: { active: "k21" }, canActivate: [AuthGuard] },
+  
+  { path: "rebate", component: RebateComponent, data: { active: "k21" }, canActivate: [AuthGuard] },
+  { path: "rebate/detail/:date", component: RebateDetailComponent, data: { active: "k21" }, canActivate: [AuthGuard] },
+  
 
   { path: "accountTrading", component: AccountTradingComponent, data: { active: "accountTrading" }, canActivate: [AuthGuard] },
+  { path: "paymentConfirm", component: PaymentConfirmComponent, data: { active: "transaction" }, canActivate: [AuthGuard] },
+
+
   { path: "profitSetting", component: ProfitSettingComponent, data: { active: "k21" }, canActivate: [AuthGuard] },
 
 
