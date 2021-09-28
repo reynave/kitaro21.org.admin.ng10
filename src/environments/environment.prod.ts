@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-  api : "https://admin2.kitaro.org/api/",
-  uploadUser : "https://member.kitaro.org/api/",
-  user : "https://member.vision88.org/", 
+  api : "https://admin2.kitaro21.org/admin.api/",
+  uploadUser : "https://member.kitaro21.org/user.api/",
+  user : "https://member.kitaro21.org", 
   kitaro : "",
 };

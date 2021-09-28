@@ -58,7 +58,7 @@ export class HeaderComponent implements OnInit {
         if(data['error'] === 400){
           this.router.navigate(['relogin']);
         }
-        this.titleService.setTitle( 'Vision88 '+ ( data['total'] > 0 ? "("+ data['total']+")":"") );
+        this.titleService.setTitle( 'kitaro21.org '+ ( data['total'] > 0 ? "("+ data['total']+")":"") );
         this.notif = data['total'] > 0 ? "("+ data['total']+")":"";
       },
       error => {

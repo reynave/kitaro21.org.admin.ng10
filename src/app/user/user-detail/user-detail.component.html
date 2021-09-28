@@ -8,6 +8,8 @@
                 <a href="javascript:;" (click)="back();">Back</a>
             </div>
             <div class="col-6 py-1 text-right">
+                <button type="button" class="btn btn-sm btn-info mx-1" (click)="open(content);">Add User</button>
+
                 <button type="button" [hidden]="!disable" class="btn btn-sm btn-primary mx-1" (click)="onDisable(false);">Editable</button>
                 <button type="button" class="btn btn-sm btn-warning mx-1" (click)="access();">Access Member</button>
                 <button type="button" class="btn btn-sm btn-danger mx-1" (click)="onRemove();" [hidden]="user.presence == 0">Remove</button>
@@ -275,14 +277,14 @@
                             <td> <input type="number" [(ngModel)]="user.ktp" [readonly]="disable" [disabled]="disable"></td>
                         </tr>
 
-                        <tr>
+                        <!-- <tr>
                             <td colspan="3">
                                 <div class="mt-1">
                                     <small>{{uploadUser}}{{attachment.url}}</small>
                                     <img src="{{uploadUser}}{{attachment.url}}">
                                 </div>
                             </td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <td>TAX</td>
                             <td>:</td>
@@ -343,7 +345,7 @@
 
 
             <div class="border p-1 mb-3 bgn">
-                <strong> Product </strong>
+                <strong> Product / EA Form Approved</strong>
                 <table class="table table-sm">
                     <thead>
                         <tr>
@@ -423,36 +425,7 @@
 
         </div>
     </div>
-
-
-
-
-    <div class="row" [hidden]="!disable">
-        <div class="col-12">
-            <a href="#/user/{{id}}/?tab=1" class="btn btn-{{active == '1' ? 'info':'light'}} mr-1" (click)="onTab('1');">Rebate</a>
-
-            <a href="#/user/{{id}}/?tab=2" class="btn btn-{{active == '2' ? 'info':'light'}} mx-1" (click)="onTab('2');">Profit Sharing</a>
-
-        </div>
-
-        <div class="col-12 mt-2 ">
-
-            <div class="border p-2 bg-light" [hidden]="active != '1'">
-                <strong>Rebate</strong>
-                <table id="HAHAexample" class="display excel bg-white border" style="width:100%">
-
-
-                </table>
-            </div>
-
-            <div class="border p-2 bg-light" [hidden]="active != '2'">
-                <strong>Profit Sharing</strong>
-
-            </div>
-
-
-        </div>
-    </div>
+ 
 
 </div>
 
@@ -473,6 +446,66 @@
 
 
 <ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <strong>Add Child User</strong>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+         <table class="table table-sm">
+             <tr>
+                 <td>Name</td>
+                 <td><input type="text" class="form-control form-control-sm" [(ngModel)]="model.name"></td>
+             </tr>
+             <tr>
+                <td>Product</td>
+                <td>
+                    <select  class="form-control form-control-sm" [(ngModel)]="model.productId">
+                        <option *ngFor="let x of selectProduct" [value]="x.id"> {{x.name}}</option>
+                    </select>
+
+                </td>
+            </tr>
+             <tr>
+                <td>Phone</td>
+                <td>
+                    <div class="row no-gutters">
+                        <div class="col-3">
+                            <input type="number" class="form-control form-control-sm" placeholder="62" [(ngModel)]="model.countryCode">
+                        </div>
+                        <div class="col-9">
+                            <input type="number" class="form-control form-control-sm" placeholder="8120001111" [(ngModel)]="model.phone">
+                        </div>
+                        
+                    </div>
+
+                </td>
+            </tr>
+          
+            <tr>
+                <td>Email</td>
+                <td><input type="email" class="form-control form-control-sm" [(ngModel)]="model.email"></td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td><input type="text" class="form-control form-control-sm" (keyup)="onkeyPas()"  [(ngModel)]="model.password">
+                <div>Encryp : {{pwd}}</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit" >Submit</button>
+                </td>
+            </tr>
+         </table>
+    </div>
+
+</ng-template>
+
+<ng-template #contentImages let-c="close" let-d="dismiss">
     <div class="modal-header">
         <strong>Images</strong>
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">

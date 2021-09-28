@@ -11,9 +11,9 @@
             </div>
         </div>
 
-        <div class="col-4 text-right">
+        <!-- <div class="col-4 text-right">
             <a href="javascript:;" (click)="modalUpload = true;" class="btn btn-sm btn-outline-secondary  "><small> <img src="./assets/icon/upload-cloud.svg" width="20"> Upload Data</small></a>
-        </div>
+        </div> -->
 
     </div>
 
@@ -23,37 +23,33 @@
             <table id="ha" class="display excel" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Period</th>
-                        <th>Batch</th>
-                        <th class="text-right">Total User</th>
-                        <th class="text-right">Total Profit</th>
-                        <th> Input Date</th>
-                        <th> Update Date </th>
-                        <th> Action </th>
+                        <th>No</th>
+                        <th>User Id</th>
+                        <th>Name</th>
+                        <th>Reseller</th>
+
+                        <th>Card</th> 
+                        <th>Qty</th>
+                        <th class="text-right">Amount (IDR)</th>
+                        <th>Transaction Code</th>
+                        <th>Input date</th>
+                       
                         
                     </tr>
                 </thead>
-                <tbody>
+                <tbody> 
+                    <tr *ngFor="let x of items; let i = index">
+                        <td>{{ i+1 }}</td>
+                        <td> {{ x.userId}} </td>
+                        <td>  {{ x.user}} </td>
+                        <td>  {{ x.parent}}</td>
 
-                    <tr *ngFor="let x of items">
-                        <td>{{x.period_date | date}}</td>
-                        <td><code>{{x.batch }}</code></td>
-                        <td class="text-right">{{x.total_user | number}}</td> 
-                        <td class="text-right">USD {{x.total_amount | number}}</td>
-
-                        <td> {{x.input_date}}, {{x.input_name}} </td>
-                        <td> {{x.update_date}}, {{x.update_name}} </td>
+                        <td>{{ x.product}} </td>
+                        <td> {{ x.qty}} </td>
+                        <td class="text-right">{{ x.amount | number}}</td>
+                        <td><code>{{ x.transactionCode}}</code></td> 
+                        <td>{{ x.input_date}}</td> 
                         
-                        <td >
-
-                            <button type="button" [routerLink]="[ '/rebate/detail', x.batch ]" class="btn btn-sm py-0 btn-primary mx-1">Detail</button>
-
-                            <span [hidden]="x.status == 1">
-                                <button type="button" (click)="onRemove(x);" class="btn btn-sm py-0 btn-danger mx-1">Remove</button>
-                                <button type="button" (click)="onApproved(x);" class="btn btn-sm py-0 btn-success mx-1">Approved</button>
-                            </span>
-                        </td>
-
                     </tr>
                 </tbody>
             </table>

@@ -4,6 +4,20 @@ import { environment } from 'src/environments/environment';
 import { ConfigService } from 'src/app/service/config.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Md5 } from "md5-typescript";
+
+export class Model {
+
+  constructor(
+    public countryCode: number, 
+    public phone: number, 
+    public name: string,
+    public password: string, 
+    public email: string,  
+    public productId: string,   
+  ) {  }
+
+}
 
 declare var $;
 @Component({
@@ -13,6 +27,7 @@ declare var $;
   providers: [NgbModalConfig, NgbModal]
 })
 export class UserDetailComponent implements OnInit {
+  model : any = new Model(62,0,"","","","");
   user: any = [];
   upload: string = environment.uploadUser;
   saldo: any = [];
@@ -22,13 +37,17 @@ export class UserDetailComponent implements OnInit {
   disable: boolean = true;
   userRollback: any = [];
   loading: boolean = false;
-  active: string = "1"; 
+  active: string = "1";
   id: string;
-  renewal : any = [];
+  renewal: any = [];
   paymentConfirm: any = [];
-  attachment : any = [];
-  product : any = [];
-  uploadUser : string = environment.uploadUser;
+  attachment: any = [];
+  product: any = [];
+  selectProduct: any = [];
+  uploadUser: string = environment.uploadUser; 
+  modalImages: string;  
+  note: string;
+  pwd : string;
   constructor(
 
     private http: HttpClient,
@@ -61,8 +80,9 @@ export class UserDetailComponent implements OnInit {
         this.bonus = data['bonus'];
         this.pairing = data['pairing'];
         this.product = data['product'];
+        this.selectProduct = data['selectProduct'];
 
-        this.paymentConfirm = data['paymentConfirm']; 
+        this.paymentConfirm = data['paymentConfirm'];
         this.attachment = data['attachment'];
         console.log(data['comPairingTotal']);
 
@@ -92,18 +112,23 @@ export class UserDetailComponent implements OnInit {
 
     );
   }
-  modalImages: string;
+ 
   open(content) {
     this.modalService.open(content);
   }
-
+ 
+  onkeyPas(){
+    this.pwd  = Md5.init(this.model.password);
+  }
 
   modalDetail(content) {
     this.modalService.open(content, { size: 'xl' });
   }
+  
   onDisable(disable) {
     this.disable = false;
   }
+
   access() {
     this.http.post<any>(environment.api + "user/access", this.user, {
       headers: this.configService.headers()
@@ -121,27 +146,27 @@ export class UserDetailComponent implements OnInit {
     );
   }
 
-  onRemove(){
-      if(confirm("DELETE THIS ACCOUNT ?")){
-        this.loading = true;
-        const body = { 
-          id: this.id
-        }
-        console.log(body);
-        this.http.post<any>(environment.api + "user/onRemove/", body, {
-          headers: this.configService.headers()
-        }).subscribe(
-          data => {
-            console.log(data); 
-            window.history.back();
-          },
-          error => {
-            console.log(error);
-          },
-    
-        );
+  onRemove() {
+    if (confirm("DELETE THIS ACCOUNT ?")) {
+      this.loading = true;
+      const body = {
+        id: this.id
       }
-  } 
+      console.log(body);
+      this.http.post<any>(environment.api + "user/onRemove/", body, {
+        headers: this.configService.headers()
+      }).subscribe(
+        data => {
+          console.log(data);
+          window.history.back();
+        },
+        error => {
+          console.log(error);
+        },
+
+      );
+    }
+  }
 
   onUpdate() {
     this.loading = true;
@@ -164,9 +189,9 @@ export class UserDetailComponent implements OnInit {
 
     );
   }
-  note:string;
-  onTab(val) { 
-    this.active = val; 
+
+  onTab(val) {
+    this.active = val;
     this.note = "";
   }
 
@@ -174,5 +199,5 @@ export class UserDetailComponent implements OnInit {
     history.back();
   }
 
-  
+
 }
