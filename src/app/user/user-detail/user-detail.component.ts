@@ -4,22 +4,21 @@ import { environment } from 'src/environments/environment';
 import { ConfigService } from 'src/app/service/config.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Md5 } from "md5-typescript";
+import { Md5 } from "md5-typescript"; 
 
-export class Model {
-
+export class Model { 
   constructor(
-    public countryCode: number, 
+    public code: number, 
     public phone: number, 
     public name: string,
     public password: string, 
     public email: string,  
     public productId: string,   
-  ) {  }
-
+    public birthdate : string,
+    public qty : number
+  ) {  } 
 }
-
-declare var $;
+ 
 @Component({
   selector: 'app-user-detail',
   templateUrl: './user-detail.component.html',
@@ -27,7 +26,7 @@ declare var $;
   providers: [NgbModalConfig, NgbModal]
 })
 export class UserDetailComponent implements OnInit {
-  model : any = new Model(62,0,"","","","");
+  model : any = new Model(62,0,"","","","","1970-01-01",1);
   user: any = [];
   upload: string = environment.uploadUser;
   saldo: any = [];
@@ -48,12 +47,13 @@ export class UserDetailComponent implements OnInit {
   modalImages: string;  
   note: string;
   pwd : string;
-  constructor(
-
+  child : any = [];
+  club : any = [];
+  constructor( 
     private http: HttpClient,
     private configService: ConfigService,
     private activatedRoute: ActivatedRoute,
-    config: NgbModalConfig, private modalService: NgbModal
+    private modalService: NgbModal
   ) {
     // config.backdrop = 'static';
     // config.keyboard = false;
@@ -63,11 +63,11 @@ export class UserDetailComponent implements OnInit {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.active = this.activatedRoute.snapshot.queryParams['tab'];
     console.log(this.activatedRoute.snapshot.queryParams['tab']);
-    this.getHttp(this.id);
+    this.getHttp();
   }
 
-  getHttp(id) {
-    this.http.get<any>(environment.api + "user/detail/" + id, {
+  getHttp() {
+    this.http.get<any>(environment.api + "user/detail/" + this.activatedRoute.snapshot.paramMap.get('id'), {
       headers: this.configService.headers()
     }).subscribe(
       data => {
@@ -75,36 +75,19 @@ export class UserDetailComponent implements OnInit {
         this.renewal = data['renewal'];
         this.user = data['user']
         this.userRollback = data['user'];
+        this.club = data['club'];
+        
         this.saldo = data['saldo'];
         this.account_trading = data['account_trading'];
         this.bonus = data['bonus'];
         this.pairing = data['pairing'];
         this.product = data['product'];
         this.selectProduct = data['selectProduct'];
-
+        this.child = data['child'];
         this.paymentConfirm = data['paymentConfirm'];
         this.attachment = data['attachment'];
         console.log(data['comPairingTotal']);
-
-        $(document).ready(function () {
-          $('#example').DataTable({
-            ordering: false,
-            lengthMenu: [50, 100, 200, 500],
-          });
-          $('#example2').DataTable({
-            ordering: false,
-            lengthMenu: [50, 100, 200, 500],
-          });
-          $('#example3').DataTable({
-            ordering: false,
-            lengthMenu: [50, 100, 200, 500],
-          });
-          $('#example4').DataTable({
-            ordering: false,
-            lengthMenu: [50, 100, 200, 500],
-          });
-
-        });
+ 
       },
       error => {
         console.log(error);
@@ -129,8 +112,8 @@ export class UserDetailComponent implements OnInit {
     this.disable = false;
   }
 
-  access() {
-    this.http.post<any>(environment.api + "user/access", this.user, {
+  access(obj) {
+    this.http.post<any>(environment.api + "user/access", obj, {
       headers: this.configService.headers()
     }).subscribe(
       data => {
@@ -145,7 +128,7 @@ export class UserDetailComponent implements OnInit {
 
     );
   }
-
+ 
   onRemove() {
     if (confirm("DELETE THIS ACCOUNT ?")) {
       this.loading = true;
@@ -199,5 +182,54 @@ export class UserDetailComponent implements OnInit {
     history.back();
   }
 
+  emailLoading : boolean = true;
+  emailNote : string;
+  
+  onCheckEmail(){
+    this.emailNote = "";
+    this.emailLoading = true;
+    const body = {
+      email : this.model.email
+    }
+    console.log(body);
+    this.http.post<any>(environment.uploadUser + "register/onCheckEmail/", body, {
+      headers: this.configService.headers()
+    }).subscribe(
+      data => {
+        this.emailLoading = false;
+        this.emailNote = data['note'];
+        console.log(data); 
+      },
+      error => {
+        console.log(error);
+      },
+
+    );
+  }
+
+
+  onSubmit(){ 
+    this.loading = true;
+    const body = {
+      model     : this.model,  
+      password : Md5.init(this.model.password), 
+      id : this.activatedRoute.snapshot.paramMap.get('id'),
+    }  
+    console.log(body);
+    this.model.password = "";
+    this.http.post<any>(environment.api + "user/onSubmit", body, {
+      headers: this.configService.headers()
+    }).subscribe(
+      data => {  
+        this.modalService.dismissAll();
+        this.getHttp();
+        console.log(data);  
+      },
+      error => {
+        console.log(error);
+      }, 
+    );
+
+  }
 
 }
