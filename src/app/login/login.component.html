@@ -1,6 +1,17 @@
 <main class="form-signin">
     <form (ngSubmit)="onSubmit()" #myForm="ngForm">
-        <img class="mb-4" src="./assets/img/VISION88-Hitam.png"  width="100%"> 
+         
+        <div class="py-5">
+           
+            <div class="row">
+                <div class="col-4">
+                    <img src="http://www.kitarotakara.com/assets/img/kitaro.png" width="100%">
+                </div>
+                <div class="col-8">
+                    <h4>KITARO21.ORG</h4>
+                </div>
+            </div>
+        </div>
         <label for="inputEmail" class="visually-hidden">Email address</label>
         <input type="email" id="inputEmail" class="form-control" placeholder="Email address"  [(ngModel)]="login.email" name="email"
         #email="ngModel"  required autofocus>

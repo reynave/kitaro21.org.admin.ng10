@@ -1,0 +1,284 @@
+<div class="print">
+    <button type="button" class="d-print-none" (click)="print();">Print</button>
+
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 mb-2">
+            <h3>
+                Surat Pernyataan dan Aplikasi Permohonan Aktivasi EA Kitaro21
+            </h3>
+        </div>
+
+        <div class="col-12">
+            <div class="border-bottom">
+                <b>DATA PRIBADI </b>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4 mb-1">
+            Nama Depan
+            <div class="border p-1">
+                {{item.name}}
+            </div>
+        </div>
+        <div class="col-4 mb-1">
+            Nama Belakang
+            <div class="border p-1">
+                {{item.altName}}
+            </div>
+        </div>
+        <div class="col-4 mb-1">
+            Jenis Kelamin
+            <div class="border p-1">
+                {{item.gender == 'm' ? 'Laki-laki':'Wanita'}}
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-6 mb-1">
+            Email
+            <div class="border p-1">
+                {{item.email}}
+            </div>
+        </div>
+        <div class="col-6 mb-1">
+            Nomor Mobile Phone
+            <div class="border p-1">
+                +{{item.countryCode}} {{item.phone}}
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-12 my-2">
+            <h4>
+                INFORMASI TENTANG AKUN TRADING DAN EXPERT ADVISOR SAYA
+            </h4>
+        </div>
+
+        <div class="col-12 mb-1">
+            <div class="border p-1">
+                Jenis Aktivasi Treasury Expert Advisor : <b>{{item.form_type}}</b>
+            </div>
+        </div>
+
+        <div class="col-6 mb-1">
+            <table>
+                <tr>
+                    <td>Nama Server di Forex Broker :</td>
+                    <td>
+                        <div class="border px-2">
+                            <b> {{item.serverName}}</b>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nomor MT4 (bila sudah ada) :</td>
+                    <td>
+                        <div class="border px-2">
+                            <b> {{item.mt4Number}}</b>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-6 mb-1">
+            <table>
+                <tr>
+                    <td>My HotForex ID :</td>
+                    <td>
+                        <div class="border">
+                            <b>{{item.hfid}}</b>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Pswd Access :</td>
+                    <td>
+                        <div class="border"> <b>{{item.password}} </b></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-12 my-2">
+            <h4> JENIS PILIHAN TREASURY EXPERT ADVISOR (TEA) YANG SAYA PILIH</h4>
+        </div>
+
+        <div class="col-8 mb-1">
+            <div class="border p-1">
+                <small><b>Bila tidak mencamtumkan pilihan, maka otomatis dimasukkan ke KITARO Swiss Prime</b></small>
+                <div>
+                    {{item.eaName}}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4 mb-1">
+            <div class="border p-1">
+                <b>Nilai Trading (dalam USD)</b>
+                <div>
+                    $ {{item.amount}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-12 my-2">
+            <div class="cms">
+
+                <div class="border-bottom">
+                    <b>PERNYATAAN PRIBADI</b>
+                </div>
+
+                <P>Saya yang bertanda tangan di bawah ini dengan ini menyatakan bahwa :</P>
+                <ol>
+                    <li>
+                        Saya dengan kesadaran sendiri dan tanpa paksaan dari pihak manapun, memberikan Kuasa penuh dengan hak substitusi kepada PT KITARO TAKARA INTERNASIONAL (selanjutnya disebut "KITARO") untuk melakukan Aktivasi Treasury EA dan mewakili saya di dalam melakukan transaksi trading
+                        pada
+                        akun Meta Trader (MT4) saya pada Broker Forex dengan sejumlah nilai trading yang tersebut di atas.
+                    </li>
+
+                    <li>
+                        Saya menyatakan telah memahami bahwa transaksi trading Foreign Exchange (Forex) memiliki risiko yang tinggi dan oleh karenanya saya mengajukan permohonan kepada KITARO untuk mewakili saya menjalankan transaksi trading tersebut dengan mempergunakan aplikasi piranti lunak
+                        Treasury
+                        Expert Advisor (selanjutnya disebut TEA) milik KITARO yang saya pakai secara cuma-cuma tanpa dipungut biaya sewa atau biaya pembelian, yang oleh karenanya saya bersedia membagikan sebagian dari keuntungan yang akan saya peroleh nantinya sebesar prosentase tertentu sesuai
+                        dengan
+                        EA yang saya pilih, mengerti dan pahami metode kerjanya.
+                    </li>
+
+                    <li>
+                        Saya menyatakan bahwa semua hasil trading yang akan dilakukan oleh TEA di kemudian hari sepenuhnya menjadi tanggung jawab saya, baik keuntungan dan kerugian yang dapat saya alami, dan dengan ini membebaskan KITARO dari segala tuntutan di kemudian hari apabila risiko tersebut
+                        terjadi pada akun trading yang saya mandatkan kepada KITARO untuk ditransaksikan sesuai dengan analisa TEA yang telah saya pilih sendiri beserta segala hasil dan akibatnya, termasuk namun tidak terbatas pada modal trading yang saya tempatkan.
+                    </li>
+                    <li>
+                        Saya sepenuhnya menyadari bahwa saya sendiri yang telah dan akan melakukan penyetoran dana (Deposit) dan penarikan dana (Withdrawal) melalui dan/atau ke rekening bank saya sendiri tanpa melibatkan PT KITARO TAKARA INTERNASIONAL, sehingga segala masalah yang mungkin timbul
+                        di kemudian hari sehubungan dengan transaksi Deposit dan Withdrawal tersebut sepenuhnya menjadi tanggung jawab saya pribadi karena saya sendiri yang telah menyetujui untuk memilih Broker Forex yang tersebut di atas.
+                    </li>
+                    <li>
+                        Saya memahami sepenuhnya bahwa PT KITARO TAKARA INTERNASIONAL dan seluruh afiliasinya tidak pernah menjanjikan tingkat keuntungan tertentu dalam bentuk apapun kepada saya sehubungan dengan trading yang saya lakukan saat ini dan di masa yang akan datang, dan oleh karenanya
+                        tingkat
+                        hasil keuntungan dan/atau kerugian yang saya alami sepenuhnya merupakan tanggung jawab saya.
+                    </li>
+                </ol>
+
+                <p>
+                    Demikianlah seluruh Pernyataan Pribadi di atas saya buat dan saya pahami sepenuhnya untuk dapat diterima oleh semua Pihak yang berkepentingan. Pernyataan Pribadi ini saya tanda tangani secara elektronik dan tanpa meterai, namun saya menyatakan bahwa kekuatan hukum dari Pernyataan
+                    Pribadi ini adalah sahih sebagaimana diatur oleh ketentuan hukum yang berlaku di negara Republik Indonesia.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-2">
+            <div class="p-1"> Dibuat di :</div>
+        </div>
+        <div class="col-4">
+            <div class="border p-1">
+                Jakarta, Indonesia
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="p-1">
+                Tanggal :
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="border  p-1">
+                {{item.input_date | date }}
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col text-center">
+            <div>
+                PEMOHON APLIKASI
+            </div>
+
+            <div>
+                <img [src]="uploadUser+item.signatureUrl" width="100%">
+            </div>
+
+            <div class="border-top">
+                <small>{{item.name}}</small>
+            </div>
+
+        </div>
+
+        <div class="col text-center">
+            <table class="table table-bordered">
+                <tr>
+                    <td>Nama AGEN / RESELLER</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="py-3">{{parent.name}}</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Level RESELLER</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="py-3">{{level}}</div>
+                    </td>
+                </tr>
+            </table>
+
+
+        </div>
+
+        <div class="col text-center">
+            <table class="table table-bordered">
+                <tr>
+                    <td>Kota Domisili RESELLER</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="py-3">{{parent.city}} </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>No Handphone RESELLER</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="py-3"> +{{parent.code}} {{parent.phone}}</div>
+                    </td>
+                </tr>
+            </table>
+
+
+        </div>
+
+        <div class="col text-center">
+            <table class="table table-bordered">
+                <tr>
+                    <td colspan="2">Diisi oleh Admin HQ</td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <br><br><br><br>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td> Check-1</td>
+
+                    <td> Check-2</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

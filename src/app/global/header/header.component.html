@@ -31,23 +31,22 @@
                 <a class="nav-link dropdown-toggle {{active == 'transaction' ? 'active': false}}  {{active == 'topup' ? 'active': false}}  {{active == 'payment' ? 'active': false}}" href="#" id="dropdown02" data-bs-toggle="dropdown" aria-expanded="false">Transaction</a>
                 <ul class="dropdown-menu float-left" aria-labelledby="dropdown02">
                     <li><a class="dropdown-item" [routerLink]="['/transaction']">General Journal</a></li> 
-                    <li><a class="dropdown-item" [routerLink]="['/paymentConfirm']">Payment Confirm</a></li> 
-                    
-                </ul>
-
+                    <li><a class="dropdown-item" [routerLink]="['/paymentConfirm']">Payment Confirm</a></li>  
+                </ul> 
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item" [hidden]="!user_access.kitaro">
                 <a class="nav-link" [ngClass]="{'active': active == 'accountTrading'}" href="javascript:;" [routerLink]="[ '/accountTrading']">EA Form</a>
             </li>
 
             
-            <li class="nav-item dropdown" [hidden]="!user_access.kitaro">
+            <li class="nav-item dropdown" >
                 <a class="nav-link dropdown-toggle {{active == 'k21' ? 'active': false}}  " href="#" id="dropdown02" data-bs-toggle="dropdown" aria-expanded="false">Commition</a>
                 <ul class="dropdown-menu float-left" aria-labelledby="dropdown02"> 
                     <li><a class="dropdown-item" [hidden]="!user_access.admin"  [routerLink]="[ '/profitSetting']">Setting</a></li> 
                     <li><a class="dropdown-item"  [routerLink]="[ '/profit']">Profit Sharing</a></li>
-                    <li><a class="dropdown-item"  [routerLink]="[ '/rebate']">Rebate</a></li>
+                    <li><a class="dropdown-item"  [routerLink]="[ '/rebate']">Rebate by System</a></li>
+                    <li><a class="dropdown-item"  [routerLink]="[ '/rebateManual']">Rebate Manual</a></li>
                 </ul>
             </li>
         </ul>

@@ -28,6 +28,9 @@ import { MembershipComponent } from './membership/membership.component';
 import { AdminComponent } from './admin/admin.component';
 import { VerivedComponent } from './verived/verived.component'; 
 import { PaymentConfirmComponent } from './payment-confirm/payment-confirm.component';
+import { AccountTradingPdfComponent } from './account-trading/account-trading-pdf/account-trading-pdf.component';
+import { RebateManualComponent } from './rebate-manual/rebate-manual.component';
+import { RebateManualDetailComponent } from './rebate-manual/rebate-manual-detail/rebate-manual-detail.component';
 
 const routes: Routes = [
   { path: "", component: LoginComponent, data: { active: "" } },
@@ -58,6 +61,10 @@ const routes: Routes = [
   { path: "topup", component: TopupComponent, data: { active: "topup" }, canActivate: [AuthGuard] },
   
  
+  { path: "rebateManual", component: RebateManualComponent, data: { active: "rebate" }, canActivate: [AuthGuard] },
+  { path: "rebateManual/detail/:id", component: RebateManualDetailComponent, data: { active: "rebate" }, canActivate: [AuthGuard] },
+ 
+
   { path: "rebate", component: RebateComponent, data: { active: "rebate" }, canActivate: [AuthGuard] },
   { path: "rebate/detail/:date", component: RebateDetailComponent, data: { active: "rebate" }, canActivate: [AuthGuard] },
 
@@ -69,6 +76,8 @@ const routes: Routes = [
   
 
   { path: "accountTrading", component: AccountTradingComponent, data: { active: "accountTrading" }, canActivate: [AuthGuard] },
+  { path: "accountTrading/pdf/:id", component: AccountTradingPdfComponent, data: { active: "accountTrading" }, canActivate: [AuthGuard] },
+ 
   { path: "paymentConfirm", component: PaymentConfirmComponent, data: { active: "transaction" }, canActivate: [AuthGuard] },
 
 

@@ -40,7 +40,10 @@ import { RenewalComponent } from './renewal/renewal.component';
 import { MembershipComponent } from './membership/membership.component'; 
 import { AdminComponent } from './admin/admin.component';
 import { VerivedComponent } from './verived/verived.component';
-import { PaymentConfirmComponent } from './payment-confirm/payment-confirm.component'; 
+import { PaymentConfirmComponent } from './payment-confirm/payment-confirm.component';
+import { AccountTradingPdfComponent } from './account-trading/account-trading-pdf/account-trading-pdf.component';
+import { RebateManualComponent } from './rebate-manual/rebate-manual.component';
+import { RebateManualDetailComponent } from './rebate-manual/rebate-manual-detail/rebate-manual-detail.component'; 
 
 
 
@@ -85,7 +88,7 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     ProfitSettingComponent, 
     RenewalComponent,
     MembershipComponent, 
-    AdminComponent, VerivedComponent, PaymentConfirmComponent, 
+    AdminComponent, VerivedComponent, PaymentConfirmComponent, AccountTradingPdfComponent, RebateManualComponent, RebateManualDetailComponent, 
   ],
   imports: [
     BrowserModule,

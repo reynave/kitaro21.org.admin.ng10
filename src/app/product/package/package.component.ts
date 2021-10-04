@@ -9,145 +9,148 @@ import { ConfigService } from 'src/app/service/config.service';
   styleUrls: ['./package.component.css']
 })
 export class PackageComponent implements OnInit {
-  items :any = []; 
-  loading :boolean = true;
+  items: any = [];
+  community: any = [];
+  loading: boolean = true;
 
-  option : any = {precision : '0' }
-  readonly : boolean = true;
-  constructor( 
+  option: any = { precision: '0' }
+  readonly: boolean = true;
+  constructor(
     private http: HttpClient,
-    private configService: ConfigService, 
+    private configService: ConfigService,
   ) { }
 
   ngOnInit(): void {
-    this.getHttp(); 
+    this.getHttp();
   }
 
   getHttp() {
     this.http.get<any>(environment.api + "package/index", {
       headers: this.configService.headers()
     }).subscribe(
-      data => { 
+      data => {
         this.loading = false;
-        console.log(data); 
-        this.items =  data['items'];  
-        
+        console.log(data);
+        this.items = data['items'];
+        this.community = data['community'];
       },
       error => {
         console.log(error);
-      }, 
+      },
     );
   }
 
-  fnUpdate(obj){
+  fnUpdate(obj) {
     console.log(obj);
     this.loading = true;
     const body = {
-      data : obj,
+      data: obj,
     }
-    this.http.post<any>(environment.api + "package/fnUpdate",body, {
+    this.http.post<any>(environment.api + "package/fnUpdate", body, {
       headers: this.configService.headers()
     }).subscribe(
-      data => {  
+      data => {
+        console.log(data);
         this.loading = false;
       },
       error => {
         console.log(error);
-      }, 
+      },
     );
   }
 
-  fnUpdatePrice(obj){ 
+  fnUpdateClub(obj) {
+    console.log(obj);
     this.loading = true;
     const body = {
-      data : obj,
+      data: obj,
     }
-    this.http.post<any>(environment.api + "package/fnUpdatePrice",body, {
+    this.http.post<any>(environment.api + "package/fnUpdateClub", body, {
       headers: this.configService.headers()
     }).subscribe(
-      data => {  
+      data => {
+        console.log(data);
         this.loading = false;
       },
       error => {
         console.log(error);
-      }, 
+      },
     );
   }
-
-
-  addPrice(){
+ 
+  addPrice() {
     this.loading = true;
     const body = {
-      data : "new Object",
+      data: "new Object",
     }
-    this.http.post<any>(environment.api + "package/addPrice",body, {
+    this.http.post<any>(environment.api + "package/addPrice", body, {
       headers: this.configService.headers()
     }).subscribe(
-      data => {   
+      data => {
         this.getHttp();
       },
       error => {
         console.log(error);
-      }, 
+      },
     );
   }
 
-  addPackage(){
+  addPackage() {
     this.loading = true;
     const body = {
-      data : "new Object",
+      data: "new Object",
     }
-    this.http.post<any>(environment.api + "package/addPackage",body, {
+    this.http.post<any>(environment.api + "package/addPackage", body, {
       headers: this.configService.headers()
     }).subscribe(
-      data => {  
+      data => {
         this.getHttp();
       },
       error => {
         console.log(error);
-      }, 
+      },
     );
   }
 
 
-  fnPresencePrice(obj,val){
+  fnPresencePrice(obj, val) {
     const body = {
-      data : obj,
-      value : val
+      data: obj,
+      value: val
     }
 
-    this.http.post<any>(environment.api + "package/fnPresencePrice",body, {
+    this.http.post<any>(environment.api + "package/fnPresencePrice", body, {
       headers: this.configService.headers()
     }).subscribe(
-      data => {   
+      data => {
         this.getHttp();
       },
       error => {
         console.log(error);
-      }, 
+      },
     );
   }
 
 
-  fnPresenceVps(obj,val){
+  fnPresenceVps(obj, val) {
     const body = {
-      data : obj,
-      value : val
+      data: obj,
+      value: val
     }
 
-    this.http.post<any>(environment.api + "package/fnPresenceVps",body, {
+    this.http.post<any>(environment.api + "package/fnPresenceVps", body, {
       headers: this.configService.headers()
     }).subscribe(
-      data => {   
+      data => {
         this.getHttp();
       },
       error => {
         console.log(error);
-      }, 
+      },
     );
   }
 
-  editable(){
+  editable() {
     this.readonly = false;
   }
 

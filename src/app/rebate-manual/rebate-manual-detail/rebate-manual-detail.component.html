@@ -2,19 +2,24 @@
 <app-header></app-header>
 
 <div class="bg-light border-bottom shadow-sm mb-3 mybody">
-    <div class="container-fluid"> 
+    <div class="container-fluid">
         <div class="row">
             <div class="col-6 py-1">
                 <a href="javascript:;" (click)="back();">Back</a>
-            </div> 
+            </div>
         </div>
     </div>
 </div>
 
 <div class="container-fluid mt-3">
     <div class="row">
-        <div class="col-12 mb-4"> 
-            <strong>  Periode Rebate {{date | date}}</strong>
+        <div class="col-12 mb-4">
+            <div>
+                <strong> User ID {{user.id}}</strong>
+            </div>
+            <div>
+                <strong> User {{user.name}}</strong>
+            </div>
         </div>
 
         <div class="col-12">
@@ -23,23 +28,21 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>User ID</th> 
-                            <th>Name</th> 
-                            <th class="text-right">Amount (IDR)</th> 
-                            <th>Input By</th>
+                            <th>Period Date</th>
+                            <th class="text-right">Amount (IDR)</th>
+                            <th>Update Date</th>
                         </tr>
                     </thead>
                     <tbody>
 
                         <tr *ngFor="let x of items; let i = index">
-                            <td>{{i+1}}</td> 
-                            <td>{{x.userId}} </td>  
-                            <td>{{x.name}} </td>  
-                            <td class="text-right"> {{x.amount | number}}</td>  
-                            <td>{{x.admin}}</td>
+                            <td>{{i+1}}</td>
+                            <td>{{x.periodDate}} </td>
+                            <td class="text-right"> {{x.amount | number}}</td>
+                            <td>{{x.update_date}}</td>
                         </tr>
                     </tbody>
-                  
+
                 </table>
             </div>
         </div>

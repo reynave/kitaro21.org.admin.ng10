@@ -1,8 +1,8 @@
 <ngx-loading [show]="loading"></ngx-loading>
 <app-header></app-header>
 
-
-<div class="container-fluid mt-3 mybody" [hidden]="modalUpload">
+<br><br>
+<div class="container-fluid mt-3" [hidden]="modalUpload">
 
     <div class="row mb-3">
         <div class="col-8">
@@ -11,9 +11,9 @@
             </div>
         </div>
 
-        <!-- <div class="col-4 text-right">
-            <a href="javascript:;" (click)="modalUpload = true;" class="btn btn-sm btn-outline-secondary  "><small> <img src="./assets/icon/upload-cloud.svg" width="20"> Upload Data</small></a>
-        </div> -->
+        <div class="col-4 text-right">
+            <a href="javascript:;" (click)="modalUpload = true;" class="btn btn-sm btn-outline-secondary"><small> <img src="./assets/icon/upload-cloud.svg" width="20"> Upload Data</small></a>
+        </div>
 
     </div>
 
@@ -24,32 +24,23 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>User Id</th>
+                        <th>User ID</th>
                         <th>Name</th>
-                        <th>Reseller</th>
-
-                        <th>Card</th> 
-                        <th>Qty</th>
-                        <th class="text-right">Amount (IDR)</th>
-                        <th>Transaction Code</th>
-                        <th>Input date</th>
-                       
-                        
+                        <th class="text-right">Total Profit</th>
+                        <th> Action </th>
                     </tr>
                 </thead>
-                <tbody> 
-                    <tr *ngFor="let x of items; let i = index">
-                        <td>{{ i+1 }}</td>
-                        <td> {{ x.userId}} </td>
-                        <td>  {{ x.user}} </td>
-                        <td>  {{ x.parent}}</td>
+                <tbody>
 
-                        <td>{{ x.product}} </td>
-                        <td> {{ x.qty}} </td>
-                        <td class="text-right">{{ x.amount | number}}</td>
-                        <td><code>{{ x.transactionCode}}</code></td> 
-                        <td>{{ x.input_date}}</td> 
-                        
+                    <tr *ngFor="let x of items; let i = index">
+                        <td>{{ i+1}}</td>
+                        <td><code>{{x.id }}</code></td>
+                        <td>{{ x.name}}</td>
+                        <td class="text-right">Rp {{x.amount | number}}</td>
+                        <td>
+                            <button type="button" [routerLink]="[ '/rebateManual/detail', x.id ]" class="btn btn-sm py-0 btn-primary mx-1">Detail</button>
+                        </td>
+
                     </tr>
                 </tbody>
             </table>
@@ -73,17 +64,9 @@
                     </button>
                 </div>
 
-              <div class="row">
-                  <div class="col-2">
-                    Period :
-                  </div>
-                  <div class="col-3">
-                     <input type="date" [(ngModel)]="periodDate" >
-                </div>
               
-              </div>
                 <div>
-                    
+
                     <table id="upld" class="display excel border" style="width:100%">
                         <thead>
                             <tr>
@@ -92,7 +75,6 @@
                                 <th>Name</th>
                                 <th class="text-right">Amount IDR</th>
                                 <th>Update</th>
-                                <th>Input</th>
 
                             </tr>
                         </thead>
@@ -100,21 +82,35 @@
                             <tr *ngFor="let x of user; let i= index">
                                 <td> {{i+1}} </td>
                                 <td> <code>{{x.id}}</code> </td>
-                                <td> <b>{{x.user}}</b> </td>
+                                <td> <b>{{x.name}}</b> </td>
                                 <td>
                                     <input type="number" class="form-control form-control-sm text-right" [(ngModel)]="x.amount" (change)="updateEditable(x)">
                                 </td>
-                                <td> {{x.update_by}}, {{x.update_date | date}} </td>
-                                <td> {{x.input_by}}, {{x.input_date | date}} </td>
+                                <td> {{x.admin}}, {{x.update_date | date}} </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
 
-                <div class="text-right py-2">
-                    <small>Setelah di submit  maka akan di generate nomor batch, jika sudah di approved terjadi kesalahan maka dapat dihapus <b>Period Date tidak boleh kosong</b> </small>
-                    <button type="button" class="btn btn-dark mx-2" (click)="onSubmitProfit();" [disabled]="!periodDate">Submit</button>
+                <div class=" py-2">
+                    
+                    <div class="row">
+                        <div class="col-2">
+                            Period :
+                        </div>
+                        <div class="col-3">
+                            <input type="date" [(ngModel)]="periodDate">
+                        </div>
+
+                        <div class="col-7 text-right">
+                            <button type="button" class="btn btn-dark mx-2" (click)="onSubmitProfit();" [disabled]="!periodDate">Submit</button>
+                        </div>
+    
+                    </div>
+
+
+                  
                 </div>
 
             </div>

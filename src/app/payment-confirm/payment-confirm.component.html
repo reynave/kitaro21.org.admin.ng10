@@ -1,9 +1,9 @@
 <app-header></app-header>
 
-<div class="container-fluid">
+<div class="container-fluid mybody">
     <div class="row">
         <div class="col-12">
-            <h1 class="display-6 my-3">Account Trading</h1>
+            <h1 class="display-6 my-3">Payment Confirm</h1>
         </div>
 
         <div class="col-12">
@@ -45,8 +45,8 @@
                             <td>{{x.date_payment}}</td>
 
                             <td class="text-center">
-                                <button type="button" (click)="onApproved(x,true);" class="btn btn-sm btn-info mx-1">Approved</button> 
-                                <button type="button" (click)="onApproved(x,false);" class="btn btn-sm btn-warning">Revision</button>
+                                <button type="button" (click)="onApproved(x,true);" class="btn btn-sm btn-info mx-1">Approve</button> 
+                                <button type="button" (click)="onApproved(x,false);" class="btn btn-sm btn-danger">Reject</button>
                             </td>
 
                         </tr>
@@ -59,7 +59,7 @@
 
 
         <div class="col-12">
-            <strong>EA Approved by Admin </strong>
+            <strong>Payment Confirm by Finance </strong>
             <div class="bg-light p-1 mb-2 border shadow-sm">
                 <table id="example2" class="display excel " style="width:100%">
                     <thead>

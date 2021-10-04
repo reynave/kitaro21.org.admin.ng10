@@ -1,0 +1,65 @@
+.pheader {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: auto;
+}
+ table {
+     width: 100%;
+ }
+
+ table td {
+    width: 50%;
+}
+.border-bottom{
+    border-bottom:#000 3px solid !important;
+}
+
+h3{
+    background: #c00;
+    color: #fff;
+    padding: 3px 10px;
+    
+    text-align: center;
+}
+h4{
+    background: #c00;
+    color: #fff;
+    padding: 3px 10px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.print{
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: auto;
+    height: auto;
+}
+
+b{
+    color: #000 !important;
+}
+p, li, div{
+    font-size: 14px;
+}
+li{
+    margin-bottom: 10px;
+}
+.table td{
+    padding: 0px;;
+}
+@page {
+    size: A4;
+    margin: 0;
+}
+
+@media print {
+    html, body {
+        
+        width: 210mm;
+        height: 297mm; 
+    }
+}

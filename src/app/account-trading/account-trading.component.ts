@@ -11,7 +11,7 @@ declare var $;
 })
 export class AccountTradingComponent implements OnInit {
   items: any = [];
-  closed: any = [];
+  closed: any = []; 
   constructor(
 
     private http: HttpClient,
