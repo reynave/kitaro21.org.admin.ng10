@@ -15,14 +15,12 @@
                         <th>No</th>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Email</th>
-                        <th>level</th>
+                        <th>Email</th> 
 
 
                         <th>Direct Sponsor</th>
                         <th>Tree Parent</th>
-
-                        <th>Expires Date</th>
+ 
                         <th>verified</th>
                         <th>Action</th>
                     </tr>
@@ -32,18 +30,16 @@
                         <td>{{i+1}}</td>
                         <td><code>{{x.id}}</code></td>
                         <td>{{x.name}}</td>
-                        <td>{{x.email}}</td>
-                        <td>{{x.level}}</td>
+                        <td>{{x.email}}</td> 
 
-                        <td>{{x.parent}}</td>
-                        <td>{{x.tree}}</td>
+                        <td>{{x.parent}}</td> 
                         <td>{{x.expires_date | date}}</td>
 
                         <td> 
                             {{x.verified == '100' ? 'Verified' : 'Pending' }}</td>
                         <td> 
                             <a [routerLink]="[ '/user/', x.id]" class="btn btn-sm btn-primary mx-1 py-0">Detail</a>  
-                        </td>
+                        </td> 
 
                     </tr>
 

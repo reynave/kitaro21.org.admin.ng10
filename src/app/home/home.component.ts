@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   items: any = []; member: any = [];
+  access : any = [];
   options : any = { prefix: 'Rp ', thousands: '.', decimal: ',', precision :0 };
   currency : string;
   date : any = []; years : any = []; 
@@ -37,10 +38,10 @@ export class HomeComponent implements OnInit {
       data => {
         console.log(data); 
         this.items = data; 
-        this.years = data['select']['years'];
+      
         this.date = data['date'];
-        this.member = data['member'];
-        this.topupList = data['topupList'];
+        this.member = data['member']; 
+        this.access = data['access'];
         
       },
       error => {

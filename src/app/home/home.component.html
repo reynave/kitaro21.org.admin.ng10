@@ -20,9 +20,23 @@
                     </div>
                  
                     <div class="col">
+                        <div class="border p-2 rounded shadow-sm alert-warning text-center" [routerLink]="[ '/paymentConfirm' ]">
+                            <b class="display-6"> Payment Confirm</b>
+                            <h1>{{items.payment}}</h1>
+                        </div>
+                    </div>
+
+                    <!-- <div class="col">
                         <div class="border p-2 rounded shadow-sm alert-success text-center" [routerLink]="[ '/renewal' ]">
                             <b class="display-6"> Renewal Membership</b>
                             <h1>{{items.renewal}}</h1>
+                        </div>
+                    </div> -->
+               
+                    <div class="col" [hidden]="access['kitaro'] == false">
+                        <div class="border p-2 rounded shadow-sm alert-danger text-center" [routerLink]="[ '/accountTrading' ]">
+                            <b class="display-6"> EA Form</b>
+                            <h1>{{items.ea}}</h1>
                         </div>
                     </div>
                 </div>

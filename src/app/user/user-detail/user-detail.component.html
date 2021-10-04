@@ -11,7 +11,7 @@
                 <button type="button" class="btn btn-sm btn-info mx-1" (click)="open(content);">Add User</button>
                 <button type="button" [hidden]="!disable" class="btn btn-sm btn-primary mx-1" (click)="onDisable(false);">Editable</button>
                 <button type="button" class="btn btn-sm btn-warning mx-1" (click)="access(user);">Access Member</button>
-                <button type="button" class="btn btn-sm btn-danger mx-1" (click)="onRemove();" [hidden]="user.presence == 0">Remove</button>
+                <!-- <button type="button" class="btn btn-sm btn-danger mx-1" (click)="onRemove();" [hidden]="user.presence == 0">Remove</button> -->
             </div>
         </div>
     </div>
@@ -31,6 +31,7 @@
                 <strong>Personal data</strong>
                 <table class="table table-sm">
                     <tbody>
+                      
                         <tr>
                             <td width="30%">ID</td>
                             <td width="1%">:</td>
@@ -293,14 +294,17 @@
                             <td> <input type="number" [(ngModel)]="user.ktp" [readonly]="disable" [disabled]="disable"></td>
                         </tr>
 
-                        <!-- <tr>
+                         <tr>
                             <td colspan="3">
                                 <div class="mt-1">
-                                    <small>{{uploadUser}}{{attachment.url}}</small>
+                                    <div>
+
+                                        <a href="{{uploadUser}}{{attachment.url}}" target="_blank"><small>{{uploadUser}}{{attachment.url}}</small></a>
+                                    </div>
                                     <img src="{{uploadUser}}{{attachment.url}}">
                                 </div>
                             </td>
-                        </tr> -->
+                        </tr> 
                         <tr>
                             <td>TAX</td>
                             <td>:</td>
@@ -324,11 +328,34 @@
                         </tr>
 
 
+                        <tr>
+                            <td>Status</td>
+                            <td>:</td>
+                            <td>  
+                                <select [(ngModel)]="user.status"  [disabled]="disable">
+                                    <option value="0">Non Active</option>
+                                    <option value="1">Active</option>
+                                    <option value="4">Disable</option>  
+                                </select> 
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>Verified</td>
+                            <td>:</td>
+                            <td>  
+                                <select [(ngModel)]="user.verified"  [disabled]="disable">
+                                    <option value="0">Draft</option>
+                                    <option value="1">Waiting Approved</option> 
+                                    <option value="100">Approved</option>  
+                                </select> 
+                            </td>
+                        </tr>
+
                     </tbody>
                 </table>
-            </div>
-
-
+            </div> 
 
         </div>
 

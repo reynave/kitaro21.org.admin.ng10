@@ -114,10 +114,21 @@
 
         <div class="col-8 mb-1">
             <div class="border p-1">
+               <div class="mb-1">
                 <small><b>Bila tidak mencamtumkan pilihan, maka otomatis dimasukkan ke KITARO Swiss Prime</b></small>
-                <div>
-                    {{item.eaName}}
+               </div>
+
+                <div class="row">
+                    <div class="col"> 
+                        <img src="./assets/img/checked-{{item.eaName == 'KITARO Global Fund (Multiple Entries)' ? false:true}}.png" width="19"  > 
+                       KITARO Swiss Prime (Single Entry)
+                    </div>
+                    <div class="col">
+                        <img src="./assets/img/checked-{{item.eaName == 'KITARO Global Fund (Multiple Entries)' ? true:false}}.png" width="19"  > 
+                        KITARO Global Fund (Multiple Entries)
+                    </div>
                 </div>
+  
             </div>
         </div>
 
