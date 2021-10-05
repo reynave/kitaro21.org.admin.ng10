@@ -15,6 +15,7 @@ export class RebateManualDetailComponent implements OnInit {
   items: any = [];
   user: any = [];
   loading: boolean = false;  
+  api : string = environment.api;
   constructor(
     private http: HttpClient,
     private configService: ConfigService,

@@ -28,8 +28,10 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Period Date</th>
+                            <th>Period Date Start</th>
+                            <th>Period Date End</th>
                             <th class="text-right">Amount (IDR)</th>
+                            <th  class="text-center">PDF</th>
                             <th>Update Date</th>
                         </tr>
                     </thead>
@@ -38,8 +40,10 @@
                         <tr *ngFor="let x of items; let i = index">
                             <td>{{i+1}}</td>
                             <td>{{x.periodDate}} </td>
+                            <td>{{x.periodDateEnd}} </td>
                             <td class="text-right"> {{x.amount | number}}</td>
-                            <td>{{x.update_date}}</td>
+                            <td class="text-center"><a href="{{api}}{{x.urlDetail}}" target="_blank" class="btn btn-sm btn-info py-0">PDF</a></td>
+                            <td>{{x.input_date}}</td>
                         </tr>
                     </tbody>
 

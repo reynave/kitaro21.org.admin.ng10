@@ -20,8 +20,13 @@ export class RebateManualComponent implements OnInit {
   amount: string;
   user: any = [];
   periodDate: string;
+  periodDateEnd: string;
+  api: string = environment.api;
   modalUpload: boolean = false;
-  fileTemplate: string = environment.api + 'public/template/Kitaro21-profit-template-ver1.xlsx';
+  uploadError: string;
+  obj : any = [];
+  fileId: any;
+  uploadReady: boolean = false;
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -38,7 +43,7 @@ export class RebateManualComponent implements OnInit {
   }
 
   getHttp() {
-    this.http.get<any>(environment.api + "rebate/manual", {
+    this.http.get<any>(environment.api + "rebate/index", {
       headers: this.configService.headers()
     }).subscribe(
       data => {
@@ -64,13 +69,7 @@ export class RebateManualComponent implements OnInit {
 
     );
   }
-  uploadReady: boolean = false;
-  open(content) {
-    this.modalService.open(content, { size: 'xl' });
-  }
-  modal() {
 
-  }
 
   updateEditable(obj) {
     const body = obj;
@@ -83,7 +82,7 @@ export class RebateManualComponent implements OnInit {
         console.log(obj.id + " " + data['id']);
         const objIndex = this.user.findIndex((obj => obj.id == data['user'][0]['id']));
         console.log(objIndex);
-        this.user[objIndex]['update_by'] = "Update"; 
+        this.user[objIndex]['update_by'] = "Update";
 
       },
       error => {
@@ -94,29 +93,37 @@ export class RebateManualComponent implements OnInit {
   }
 
   onSubmitProfit() {
-    if (confirm("Are you sure submit this data ?")) {
-      this.loading = true;
-      const body = {
-        submit: true,
-        periodDate: this.periodDate,
-      };
-      this.http.post<any>(environment.api + "rebate/onSubmitProfit", body, {
-        headers: this.configService.headers()
-      }).subscribe(
-        data => {
-          this.loading = false;
-          this.modalService.dismissAll();
-          window.location.reload();
-          console.log(data);
-        },
-        error => {
-          console.log(error);
-        },
+    if (!this.periodDate || !this.periodDateEnd) {
+      alert("Period Date and Period Date End Required!");
+    } else {
 
-      );
+
+
+      if (confirm("Are you sure submit this data ?")) {
+        this.loading = true;
+        const body = {
+          submit: true,
+          periodDate: this.periodDate,
+          periodDateEnd: this.periodDateEnd,
+
+        };
+        this.http.post<any>(environment.api + "rebate/onSubmitProfit", body, {
+          headers: this.configService.headers()
+        }).subscribe(
+          data => {
+            this.loading = false;
+            this.modalService.dismissAll();
+            window.location.reload();
+            console.log(data);
+          },
+          error => {
+            console.log(error);
+          },
+
+        );
+      }
     }
   }
-
 
 
   onRemove(x) {
@@ -155,5 +162,51 @@ export class RebateManualComponent implements OnInit {
       );
     }
   }
+
+
+  open(content, obj) {
+    this.obj = obj;
+    this.modalService.open(content);
+  }
+  
+
+  onFileSelected(event) {
+    this.fileId = event.target.files[0];
+  }
+ 
+  onUploadId() {
+    const obj = this.obj;
+    const fd = new FormData();
+    if (!this.fileId) {
+      alert("File tidak ditemukan!");
+      return false;
+    }
+
+    this.loading = true;
+    fd.append('uploadFile', this.fileId, this.fileId.name);
+    fd.append('token', this.configService.token());
+    fd.append('userId', obj.id);
+    this.fileId = null;
+    console.log(fd);
+    this.http.post<any>(environment.api + 'upload/rebateDetail', fd).subscribe(
+      data => {
+        this.loading = false;
+        this.uploadError = data['error'];
+        console.log(data);
+        //this.upload['uploadId'] = data['upload_data'];
+        // this.uploadError = data['error']; 
+          $('.up'+obj.id).html("Add PDF"); 
+        
+        this.modalService.dismissAll();
+      },
+      error => {
+        this.loading = false;
+        console.log(error);
+        this.modalService.dismissAll();
+
+      }
+    );
+  }
+
 
 }

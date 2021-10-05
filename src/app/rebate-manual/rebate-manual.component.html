@@ -49,9 +49,9 @@
     </div>
 </div>
 
+<!--  -->
 
-
-<div class="container my-3" [hidden]="!modalUpload">
+<div class="container my-3" [hidden]="!modalUpload" >
     <div class="row">
         <div class="col-12">
             <div class="border py-1 px-2 bg-light shadow-sm">
@@ -64,7 +64,8 @@
                     </button>
                 </div>
 
-              
+                <div [innerHTML]="uploadError"></div>
+
                 <div>
 
                     <table id="upld" class="display excel border" style="width:100%">
@@ -74,6 +75,8 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th class="text-right">Amount IDR</th>
+                                <th>PDF</th>
+                                <th>Upload</th>
                                 <th>Update</th>
 
                             </tr>
@@ -82,10 +85,21 @@
                             <tr *ngFor="let x of user; let i= index">
                                 <td> {{i+1}} </td>
                                 <td> <code>{{x.id}}</code> </td>
-                                <td> <b>{{x.name}}</b> </td>
+                                <td> <b>{{x.name}}</b> </td> 
                                 <td>
                                     <input type="number" class="form-control form-control-sm text-right" [(ngModel)]="x.amount" (change)="updateEditable(x)">
+                                
+
                                 </td>
+                                <td> 
+                                    <div [hidden]="!x.urlDetail"><a href="{{api}}{{x.urlDetail}}" target="_blank">See PDF</a></div>
+                                    <div class="up{{x.id}}"></div>
+                                </td>
+                                <td> 
+                                     <button class="btn btn-sm btn-secondary py-0" (click)="open(content,x )">Upload</button>
+                                  
+                                </td>
+
                                 <td> {{x.admin}}, {{x.update_date | date}} </td>
                             </tr>
                         </tbody>
@@ -95,16 +109,23 @@
 
                 <div class=" py-2">
                     
-                    <div class="row">
-                        <div class="col-2">
-                            Period :
+                    <div class="row no-gutters">
+                        <div class="col-2 text-right">
+                            Period Start:
                         </div>
-                        <div class="col-3">
+                        <div class="col-2">
                             <input type="date" [(ngModel)]="periodDate">
                         </div>
 
-                        <div class="col-7 text-right">
-                            <button type="button" class="btn btn-dark mx-2" (click)="onSubmitProfit();" [disabled]="!periodDate">Submit</button>
+                        <div class="col-2 text-right">
+                            Period End:
+                        </div>
+                        <div class="col-2">
+                            <input type="date" [(ngModel)]="periodDateEnd">
+                        </div>
+
+                        <div class="col-4 text-right">
+                            <button type="button" class="btn btn-dark mx-2" (click)="onSubmitProfit();" [disabled]="!periodDate && !periodDateEnd ">Submit</button>
                         </div>
     
                     </div>
@@ -118,3 +139,26 @@
         </div>
     </div>
 </div>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <b>Upload PDF</b>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <table class="table table-sm border">
+            <tr>
+                <td width="20%">ID </td><td>: <code>{{obj.id}}</code></td>
+            </tr>
+            <tr>
+                <td>Name </td><td>: {{obj.name}}</td>
+            </tr>
+        </table>
+        <input class="border p-1" id="fileId" type="file" (change)="onFileSelected($event)">
+        <a href="javacsript:;" class="mx-1 btn btn-primary"   (click)="onUploadId();">Upload</a>
+    </div>
+    
+  </ng-template>
