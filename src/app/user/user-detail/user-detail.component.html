@@ -69,9 +69,14 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Email</td>
+                            <td>Email (LOGIN)</td>
                             <td>:</td>
                             <td> <b>{{user.email}}</b></td>
+                        </tr>
+                        <tr>
+                            <td>Birthdate</td>
+                            <td>:</td>
+                            <td>  <input type="text" [(ngModel)]="user.birthdate" [readonly]="disable" [disabled]="disable"> </td>
                         </tr>
                         <tr>
                             <td>Phone</td>

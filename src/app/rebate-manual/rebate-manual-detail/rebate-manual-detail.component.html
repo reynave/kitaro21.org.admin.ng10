@@ -33,6 +33,7 @@
                             <th class="text-right">Amount (IDR)</th>
                             <th  class="text-center">PDF</th>
                             <th>Update Date</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,6 +45,10 @@
                             <td class="text-right"> {{x.amount | number}}</td>
                             <td class="text-center"><a href="{{api}}{{x.urlDetail}}" target="_blank" class="btn btn-sm btn-info py-0">PDF</a></td>
                             <td>{{x.input_date}}</td>
+                            <td>
+                                <button type="button" class="btn btn-sm py-0 btn-danger" (click)="onDelete(x);" >Delete</button>
+                            </td>
+                            
                         </tr>
                     </tbody>
 

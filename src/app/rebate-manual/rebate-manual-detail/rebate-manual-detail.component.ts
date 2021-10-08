@@ -55,4 +55,23 @@ export class RebateManualDetailComponent implements OnInit {
   back() {
     window.history.back();
   }
+
+
+  onDelete(obj){
+    if(confirm("Delete this Report ?")){
+     
+      this.http.post<any>(environment.api + "rebate/onDelete/", obj, {
+        headers: this.configService.headers()
+      }).subscribe(
+        data => {
+          console.log(data); 
+          window.location.reload();
+        },
+        error => {
+          console.log(error);
+        },
+  
+      );
+    }
+  }
 }

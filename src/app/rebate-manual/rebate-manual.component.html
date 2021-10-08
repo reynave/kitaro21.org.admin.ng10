@@ -159,6 +159,9 @@
         </table>
         <input class="border p-1" id="fileId" type="file" (change)="onFileSelected($event)">
         <a href="javacsript:;" class="mx-1 btn btn-primary"   (click)="onUploadId();">Upload</a>
+        <div [hidden]="!gifloading"> <img src="./assets/icon/ajax-loader.gif" width="50">  loading...</div>
+        <div [innerHTML]="uploadError"></div>
+        <div><small>PDF only and max of size 500 KB</small></div>
     </div>
     
   </ng-template>

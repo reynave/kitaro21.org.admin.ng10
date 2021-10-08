@@ -173,7 +173,7 @@ export class RebateManualComponent implements OnInit {
   onFileSelected(event) {
     this.fileId = event.target.files[0];
   }
- 
+  gifloading : boolean = false;
   onUploadId() {
     const obj = this.obj;
     const fd = new FormData();
@@ -182,7 +182,7 @@ export class RebateManualComponent implements OnInit {
       return false;
     }
 
-    this.loading = true;
+    this.gifloading = true;
     fd.append('uploadFile', this.fileId, this.fileId.name);
     fd.append('token', this.configService.token());
     fd.append('userId', obj.id);
@@ -190,14 +190,17 @@ export class RebateManualComponent implements OnInit {
     console.log(fd);
     this.http.post<any>(environment.api + 'upload/rebateDetail', fd).subscribe(
       data => {
-        this.loading = false;
-        this.uploadError = data['error'];
-        console.log(data);
-        //this.upload['uploadId'] = data['upload_data'];
-        // this.uploadError = data['error']; 
+        this.gifloading = false;
+      
+        if(data['error'] == true){
+          this.uploadError = data['note'];
+        }else{
           $('.up'+obj.id).html("Add PDF"); 
-        
-        this.modalService.dismissAll();
+          this.modalService.dismissAll();
+        }
+        console.log(data);
+      
+      
       },
       error => {
         this.loading = false;
