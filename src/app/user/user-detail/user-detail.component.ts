@@ -155,6 +155,7 @@ export class UserDetailComponent implements OnInit {
     this.loading = true;
     const body = {
       user: this.user,
+      product : this.product,
       id: this.id
     }
     console.log(body);
@@ -211,7 +212,7 @@ export class UserDetailComponent implements OnInit {
   onSubmit(){ 
     this.loading = true;
     const body = {
-      model     : this.model,  
+      model     : this.model,   
       password : Md5.init(this.model.password), 
       id : this.activatedRoute.snapshot.paramMap.get('id'),
     }  

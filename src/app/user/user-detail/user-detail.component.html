@@ -31,7 +31,7 @@
                 <strong>Personal data</strong>
                 <table class="table table-sm">
                     <tbody>
-                      
+
                         <tr>
                             <td width="30%">ID</td>
                             <td width="1%">:</td>
@@ -40,13 +40,13 @@
                         <tr>
                             <td>Club</td>
                             <td>:</td>
-                            <td> 
-                                <select [(ngModel)]="user.id_community"  [disabled]="disable">
+                            <td>
+                                <select [(ngModel)]="user.id_community" [disabled]="disable">
                                     <option *ngFor="let x of club" [value]="x.id"> {{x.name}}</option>
-                                </select> 
+                                </select>
                             </td>
                         </tr>
-        
+
                         <tr>
                             <td>Card Number</td>
                             <td>:</td>
@@ -76,7 +76,7 @@
                         <tr>
                             <td>Birthdate</td>
                             <td>:</td>
-                            <td>  <input type="text" [(ngModel)]="user.birthdate" [readonly]="disable" [disabled]="disable"> </td>
+                            <td> <input type="text" [(ngModel)]="user.birthdate" [readonly]="disable" [disabled]="disable"> </td>
                         </tr>
                         <tr>
                             <td>Phone</td>
@@ -299,7 +299,7 @@
                             <td> <input type="number" [(ngModel)]="user.ktp" [readonly]="disable" [disabled]="disable"></td>
                         </tr>
 
-                         <tr>
+                        <tr>
                             <td colspan="3">
                                 <div class="mt-1">
                                     <div>
@@ -309,7 +309,7 @@
                                     <img src="{{uploadUser}}{{attachment.url}}">
                                 </div>
                             </td>
-                        </tr> 
+                        </tr>
                         <tr>
                             <td>TAX</td>
                             <td>:</td>
@@ -336,12 +336,12 @@
                         <tr>
                             <td>Status</td>
                             <td>:</td>
-                            <td>  
-                                <select [(ngModel)]="user.status"  [disabled]="disable">
+                            <td>
+                                <select [(ngModel)]="user.status" [disabled]="disable">
                                     <option value="0">Non Active</option>
                                     <option value="1">Active</option>
-                                    <option value="4">Disable</option>  
-                                </select> 
+                                    <option value="4">Disable</option>
+                                </select>
                             </td>
                         </tr>
 
@@ -349,18 +349,18 @@
                         <tr>
                             <td>Verified</td>
                             <td>:</td>
-                            <td>  
-                                <select [(ngModel)]="user.verified"  [disabled]="disable">
+                            <td>
+                                <select [(ngModel)]="user.verified" [disabled]="disable">
                                     <option value="0">Draft</option>
-                                    <option value="1">Waiting Approved</option> 
-                                    <option value="100">Approved</option>  
-                                </select> 
+                                    <option value="1">Waiting Approved</option>
+                                    <option value="100">Approved</option>
+                                </select>
                             </td>
                         </tr>
 
                     </tbody>
                 </table>
-            </div> 
+            </div>
 
         </div>
 
@@ -393,29 +393,40 @@
 
 
             <div class="border p-1 mb-3 bgn">
-                <strong> Product / EA Form Approved</strong>
+                <strong> COFFEETALK CLUB COMMUNITY CARD INDONESIA </strong>
                 <table class="table table-sm">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Order Code</th>
+                            <th>Order</th>
                             <th>Product</th>
                             <th>Qut</th>
                             <th>Order Date</th>
-                            <th>Status</th>
+                            <th>Trans.Code</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let x of product; let i = index">
                             <td>{{i+1}}</td>
                             <td><code>{{x.orderCode}}</code></td>
-                            <td> {{x.product}} </td>
-                            <td> {{x.qty}} </td>
+                            <td>
+                                <select [(ngModel)]="x.productId"   [disabled]="disable">
+                                    <option *ngFor="let p of selectProduct" [value]="p.id">{{p.name}} </option>
+                                </select>
+                            </td>
+                            <td width="50px">
+                                <input type="number" [(ngModel)]="x.qty" [readonly]="disable" [disabled]="disable">
+                            </td>
                             <td> {{x.input_date}} </td>
-                            <td> {{x.status}} </td>
+                            <td>
+                                {{x.transactionCode}}
+
+                            </td>
                         </tr>
                     </tbody>
                 </table>
+
+                
             </div>
 
             <div class="border p-1 mb-3 alert-info">
@@ -543,7 +554,7 @@
                         <small class="text-danger"> {{emailNote}} </small>
                     </td>
                 </tr>
- 
+
                 <tr>
                     <td>Name</td>
                     <td><input type="text" class="form-control form-control-sm" name="name" [(ngModel)]="model.name" #name="ngModel">
